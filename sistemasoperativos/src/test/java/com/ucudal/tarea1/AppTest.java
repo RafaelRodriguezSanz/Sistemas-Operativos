@@ -1,4 +1,4 @@
-package com.ucudal.scheduler;
+package com.ucudal.tarea1;
 
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
