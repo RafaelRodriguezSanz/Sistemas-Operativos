@@ -11,4 +11,4 @@ Proyecto final de Sistemas Operativos para la Universidad Católica del Uruguay,
 * Juan Nocetti
 * Rafael Rodriguez
 
-[✅ Trello](https://trello.com/b/GYm4rVU4 "Trello Kanban")
+[✅ Trello](https://trello.com/invite/b/GYm4rVU4/83cbca16015aa128ea561b83d9611313/obligatorio-so "Trello Kanban")
