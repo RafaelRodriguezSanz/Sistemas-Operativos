@@ -54,7 +54,7 @@ jobs:
       with:
         java-version: 13
     - name: Publish package
-      run: cd sistemasoperativos && mvn -B deploy
+      run: cd sistemasoperativos && cd target && mvn -B deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Release:
