@@ -56,13 +56,10 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Build with Maven
-      run: cd sistemasoperativos && mvn -B package --file pom.xml
-
-    - name: Publish to GitHub Packages Apache Maven
-      run: cd sistemasoperativos && mvn deploy
+    - name: Publish to GitHub Packages
+      run: cd sistemasoperativos && mvn --batch-mode deploy
       env:
-        GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Release:
     runs-on: ubuntu-latest
     permissions:
