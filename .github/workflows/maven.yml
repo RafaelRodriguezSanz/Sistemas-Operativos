@@ -57,19 +57,19 @@ jobs:
         java-version: '11'
 
     - name: Publish to GitHub Packages
-      run: cd sistemasoperativos && mvn --batch-mode deploy
+      run: cd sistemasoperativos
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish to GitHub Packages
+      run: mvn --batch-mode deploy
   Release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "target/sistemasoperativos-1.0.jar"
-        bodyFile: "release.md"
-      
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
