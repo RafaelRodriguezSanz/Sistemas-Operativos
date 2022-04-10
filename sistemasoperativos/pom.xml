@@ -17,7 +17,13 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
-
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/rafaelrodriguezsanz/sistemas-operativos</url>
+    </repository>
+ </distributionManagement>
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
