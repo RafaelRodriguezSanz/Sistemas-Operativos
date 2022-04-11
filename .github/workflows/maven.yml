@@ -56,6 +56,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Build with Maven
       run: cd sistemasoperativos && mvn deploy
   Release:
@@ -68,4 +70,4 @@ jobs:
       with:
         artifacts: "target/sistemasoperativos-1.0.jar"
         bodyFile: "release.md"
-      
+        repo-token: ${{ secrets.GITHUB_TOKEN }}

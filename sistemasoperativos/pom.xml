@@ -6,7 +6,7 @@
 
   <groupId>com.ucudal.tarea1</groupId>
   <artifactId>sistemasoperativos</artifactId>
-  <version>1.1</version>
+  <version>1.0</version>
 
   <name>sistemasoperativos</name>
   <!-- FIXME change it to the project's website -->
@@ -24,7 +24,7 @@
       <url>https://maven.pkg.github.com/rafaelrodriguezsanz/sistemas-operativos</url>
     </repository>
  </distributionManagement>
-
+  
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
