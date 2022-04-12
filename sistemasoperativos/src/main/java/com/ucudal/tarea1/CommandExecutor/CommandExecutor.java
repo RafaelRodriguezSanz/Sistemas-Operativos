@@ -3,22 +3,25 @@ package com.ucudal.tarea1.CommandExecutor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 
 public final class CommandExecutor {
     private static CommandExecutor instance;
     private static File DEFAULT_PATH;
-    ProcessBuilder processBuilder;
+    private ProcessBuilder processBuilder;
 
     private CommandExecutor() {
         DEFAULT_PATH = new File(System.getenv("HOME"));
         processBuilder = new ProcessBuilder(new String[] { "/bin/bash", "-c"});
         processBuilder.directory(DEFAULT_PATH);
     }
-
+    public static void setDEFAULT_PATH(File path) {
+        DEFAULT_PATH = path;
+    }
+    public static File getDEFAULT_PATH() {
+        return DEFAULT_PATH;
+    }
     public static CommandExecutor getInstance() {
         if (instance == null) {
             instance = new CommandExecutor();

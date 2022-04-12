@@ -12,7 +12,6 @@ public class App {
         CommandExecutor cmd = CommandExecutor.getInstance();
         cmd.addCommand("whoami");
         
-        
         // OS.cleanAll();
         // OS.createGroup("SO");
         // OS.createUser("SO_User", "r--");
