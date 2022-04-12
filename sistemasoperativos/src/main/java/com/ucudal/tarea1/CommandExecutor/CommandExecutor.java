@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
 
 public final class CommandExecutor {
     private static CommandExecutor instance;
-    private static String DEFAULT_PATH = "/usr/local/";
+    private static File DEFAULT_PATH;
+    ProcessBuilder processBuilder;
 
     private CommandExecutor() {
-        // Singleton Creation
+        DEFAULT_PATH = new File(System.getenv("HOME"));
+        processBuilder = new ProcessBuilder(new String[] { "/bin/bash", "-c"});
+        processBuilder.directory(DEFAULT_PATH);
     }
 
     public static CommandExecutor getInstance() {
@@ -22,29 +26,46 @@ public final class CommandExecutor {
         return instance;
     }
 
-    private static void execute(String command) {
-        execute(command, DEFAULT_PATH);
-    }
-
-    private static void execute(String command, String folder) {
-        String[] commands = { "CMD", "/C", command };
-        ProcessBuilder probuilder = new ProcessBuilder(commands);
-        probuilder.directory(new File(folder));
+    public int execute() {
         try {
-            Process process = probuilder.start();
+            Process process = processBuilder.start();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
-            System.out.printf("Output of running %s is:\n", Arrays.toString(commands));
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
             }
             int exitValue = process.waitFor();
-            System.out.println("\n\nExit Value is " + exitValue);
+            return exitValue;
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();
+            return -1;
         } catch (IOException ioException) {
             ioException.printStackTrace();
+            return -2;
+        }
+        
+    }
+
+    public void addCommand(String command) {
+        processBuilder.command(command);
+    }
+
+    public void addCommand(String[] commands) {
+        for (String command : commands) {
+            addCommand(command);
+        }
+    }
+
+    public List<String> getCommands(){
+        return processBuilder.command();
+    }
+
+    public void showCommands(){
+        int i=0;
+        for (String command : processBuilder.command()) {
+            i++;
+            System.out.println("Command "+i+": "+command);
         }
     }
 }
