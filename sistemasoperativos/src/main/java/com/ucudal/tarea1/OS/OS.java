@@ -14,7 +14,7 @@ public class OS {
 
     // Add a new user (if does not exist), with userName and privilegies
     // Return false if it already exist or can´t be created
-    public static boolean createUser(String userName, String provilegies) {
+    public static boolean createUser(String userName, String privilegies) {
         return true;
     }
 

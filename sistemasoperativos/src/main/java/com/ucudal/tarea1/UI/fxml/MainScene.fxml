@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneeController">
+   <children>
+      <ImageView fitHeight="94.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../../../Users/Rafael/Desktop/2022-04-11%2015_17_12-Obligatorio%201%20-%20Documentos%20de%20Google.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Accordion layoutY="70.0" prefHeight="330.0" prefWidth="600.0">
+              <panes>
+                  <TitledPane animated="false" text="General">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="36.0" prefHeight="327.0" prefWidth="600.0" text="Users">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="304.0" prefWidth="598.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="228.0" prefWidth="600.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="256.0">
+                                       <children>
+                                          <Button fx:id="addUserButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addUser" prefHeight="62.0" prefWidth="64.0" text="Add" />
+                                          <TextField fx:id="addUserName" layoutX="87.0" layoutY="15.0" prefHeight="26.0" prefWidth="196.0" promptText="User Name" />
+                                          <TextField fx:id="removeUserName" layoutX="87.0" layoutY="125.0" prefHeight="26.0" prefWidth="196.0" promptText="User Name" />
+                                          <TextField fx:id="addUserPrivilegies" layoutX="87.0" layoutY="51.0" prefHeight="26.0" prefWidth="196.0" promptText="User Privilegies" />
+                                          <TextField fx:id="removeUserPrivilegies" layoutX="87.0" layoutY="160.0" prefHeight="26.0" prefWidth="196.0" promptText="User Privilegies" />
+                                          <Button fx:id="removeUserButton" layoutX="12.0" layoutY="125.0" mnemonicParsing="false" onAction="#removeUser" prefHeight="62.0" prefWidth="65.0" text="Remove" />
+                                       </children>
+                                    </AnchorPane>
+                                    <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="294.0">
+                                             <children>
+                                                <TextArea disable="true" editable="false" prefHeight="227.0" prefWidth="295.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                <TitledPane animated="false" prefHeight="327.0" prefWidth="600.0" text="Groups">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="304.0" prefWidth="598.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="228.0" prefWidth="600.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="256.0">
+                                       <children>
+                                          <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Add" />
+                                          <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" text="Remove" />
+                                          <TextField layoutX="87.0" layoutY="15.0" prefHeight="26.0" prefWidth="196.0" promptText="Group Name" />
+                                          <TextField layoutX="87.0" layoutY="51.0" prefHeight="26.0" prefWidth="196.0" promptText="Group Name" />
+                                          <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Add" />
+                                          <TextField layoutX="87.0" layoutY="94.0" prefHeight="26.0" prefWidth="195.0" promptText="User Name" />
+                                          <TextField layoutX="87.0" layoutY="127.0" prefHeight="26.0" prefWidth="195.0" promptText="User Name" />
+                                          <Button layoutX="13.0" layoutY="161.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Remove" />
+                                          <TextField layoutX="86.0" layoutY="162.0" prefHeight="26.0" prefWidth="195.0" promptText="User Name" />
+                                          <TextField layoutX="86.0" layoutY="195.0" prefHeight="26.0" prefWidth="195.0" promptText="User Name" />
+                                       </children>
+                                    </AnchorPane>
+                                    <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="294.0">
+                                             <children>
+                                                <TextArea disable="true" editable="false" prefHeight="227.0" prefWidth="295.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </content>
+                                    </ScrollPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Details">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="228.0" prefWidth="600.0">
+                                 <items>
+                                    <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="294.0">
+                                             <children>
+                                                <TextArea disable="true" editable="false" layoutX="-9.0" layoutY="34.0" prefHeight="192.0" prefWidth="312.0" />
+                                                <Label layoutY="5.0" prefHeight="26.0" prefWidth="294.0" text="Users" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <ScrollPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="294.0">
+                                             <children>
+                                                <TextArea disable="true" editable="false" layoutX="-9.0" layoutY="33.0" prefHeight="193.0" prefWidth="312.0" />
+                                                <Label layoutX="-1.0" prefHeight="26.0" prefWidth="294.0" text="Groups" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+            <ProgressIndicator fx:id="Progress" layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="117.0" progress="0.42" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

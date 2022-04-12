@@ -36,9 +36,14 @@
     <!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
     <dependency>
       <groupId>org.openjfx</groupId>
-      <artifactId>javafx</artifactId>
+      <artifactId>javafx-controls</artifactId>
       <version>11</version>
-      <type>pom</type>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>19-ea+4</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
     <dependency>
@@ -99,6 +104,14 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-maven-plugin</artifactId>
+          <version>0.0.1</version>
+          <configuration>
+              <mainClass>./sistemasoperativos/src/main/java/com/ucudal/tarea1/UI/MainSceneController</mainClass>
+          </configuration>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>

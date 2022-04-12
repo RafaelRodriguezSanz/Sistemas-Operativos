@@ -11,62 +11,62 @@ import java.util.ArrayList;
 public class GenericFileManager {
 
     /**
-     * @param nombreCompletoArchivo
-     * @param listaLineasArchivo    lista con las lineas del archivo
+     * @param fileFullName
+     * @param fileLineList
      * @throws IOException
      */
-    public static void escribirArchivo(String nombreCompletoArchivo,
-            String[] listaLineasArchivo) {
+    public static void writeFile(String fileFullName,
+            String[] fileLineList) {
         FileWriter fw;
         try {
-            fw = new FileWriter(nombreCompletoArchivo, true);
+            fw = new FileWriter(fileFullName, true);
             BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < listaLineasArchivo.length; i++) {
-                String lineaActual = listaLineasArchivo[i];
-                bw.write(lineaActual);
+            for (int i = 0; i < fileLineList.length; i++) {
+                String actualLine = fileLineList[i];
+                bw.write(actualLine);
                 bw.newLine();
             }
             bw.close();
             fw.close();
         } catch (IOException e) {
-            System.out.println("Error al escribir el archivo "
-                    + nombreCompletoArchivo);
+            System.out.println("Error writing the file"
+                    + fileFullName);
             e.printStackTrace();
         }
     }
 
-    public static String[] leerArchivoRutaRelativa(String nombreCompletoArchivo, boolean ignoreHeader) {
+    public static String[] readRelativeFilePath(String fileFullName, boolean ignoreHeader) {
         String path = GenericFileManager.class
-                .getResource(nombreCompletoArchivo).getPath();
-        return leerArchivo(path, ignoreHeader);
+                .getResource(fileFullName).getPath();
+        return readFile(path, ignoreHeader);
     }
 
-    public static String[] leerArchivo(String nombreCompletoArchivo, boolean ignoreHeader) {
+    public static String[] readFile(String fileFullName, boolean ignoreHeader) {
         FileReader fr;
-        ArrayList<String> listaLineasArchivo = new ArrayList<String>();
+        ArrayList<String> fileLineList = new ArrayList<String>();
         try {
-            fr = new FileReader(nombreCompletoArchivo);
+            fr = new FileReader(fileFullName);
             BufferedReader br = new BufferedReader(fr);
-            String lineaActual = br.readLine();
+            String actualLine = br.readLine();
             if (ignoreHeader)
-                lineaActual = br.readLine();
-            while (lineaActual != null) {
-                listaLineasArchivo.add(lineaActual);
-                lineaActual = br.readLine();
+                actualLine = br.readLine();
+            while (actualLine != null) {
+                fileLineList.add(actualLine);
+                actualLine = br.readLine();
             }
             br.close();
             fr.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Error al leer el archivo "
-                    + nombreCompletoArchivo);
+            System.out.println("Error reading the file "
+                    + fileFullName);
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo "
-                    + nombreCompletoArchivo);
+            System.out.println("Error reading the file "
+                    + fileFullName);
             e.printStackTrace();
         }
-        // System.out.println("Archivo leido satisfactoriamente");
+        System.out.println("File was read succesfully!");
 
-        return listaLineasArchivo.toArray(new String[0]);
+        return fileLineList.toArray(new String[0]);
     }
 }
