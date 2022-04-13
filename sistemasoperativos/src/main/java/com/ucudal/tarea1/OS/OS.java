@@ -96,4 +96,10 @@ public class OS {
         cmd.execute();
         return cmd.getOutput();
     }
+    public static String currentUser(){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("whoami");
+        cmd.execute();
+        return cmd.getOutput();
+    }
 }
