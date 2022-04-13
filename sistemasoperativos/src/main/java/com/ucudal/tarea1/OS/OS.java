@@ -1,5 +1,7 @@
 package com.ucudal.tarea1.OS;
 
+import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
+
 public class OS {
 
     // Clean all groups and users in the OS except root
@@ -36,7 +38,9 @@ public class OS {
     // Returns the userName user info
     // Returns null if user was not found or info could not be get
     public static String getUserInfo(String userName) {
-        return "";
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName);
+        return cmd.getOutput();
     }
 
     // Returns all users info
@@ -51,4 +55,45 @@ public class OS {
         return "";
     }
 
+    public static boolean userExists(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f1 ");
+        return cmd.execute();
+    }
+
+    public static String userEncriptedPassword(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f2 ");
+        cmd.execute();
+        return cmd.getOutput();
+    }
+    public static int userID(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f3 ");
+        cmd.execute();
+        return Integer.parseInt(cmd.getOutput().trim());
+    }
+    public static int userGroupID(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f4 ");
+        cmd.execute();
+        return Integer.parseInt(cmd.getOutput().trim());
+    }
+    public static String userDescription(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f5 ");
+        cmd.execute();
+        return cmd.getOutput();
+    }
+    public static String userHomeFolder(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f6 ");
+        return cmd.getOutput();
+    }
+    public static String userShell(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userName+" |cut -d: -f7 ");
+        cmd.execute();
+        return cmd.getOutput();
+    }
 }

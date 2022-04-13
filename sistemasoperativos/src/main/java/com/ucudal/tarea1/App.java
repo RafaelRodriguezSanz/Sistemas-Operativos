@@ -9,9 +9,10 @@ import com.ucudal.tarea1.OS.OS;
  */
 public class App {
     public static void main(String[] args) {
-        CommandExecutor cmd = CommandExecutor.getInstance();
-        cmd.addCommand("whoami");
-        
+        //CommandExecutor cmd = CommandExecutor.getInstance();
+        //cmd.addCommand("whoami");
+        OS.userExists("rafael");
+        OS.userID("rafael");
         // OS.cleanAll();
         // OS.createGroup("SO");
         // OS.createUser("SO_User", "r--");
@@ -22,6 +23,6 @@ public class App {
         // OS.getUsers();
         // OS.getGroups();
         
-        cmd.execute();
+        
     }
 }

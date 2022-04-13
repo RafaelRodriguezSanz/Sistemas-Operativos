@@ -10,11 +10,13 @@ public final class CommandExecutor {
     private static CommandExecutor instance;
     private static File DEFAULT_PATH;
     private ProcessBuilder processBuilder;
+    private String output;
+    private int errorCode;
 
-    private CommandExecutor() {
-        DEFAULT_PATH = new File(System.getenv("HOME"));
-        processBuilder = new ProcessBuilder(new String[] { "/bin/bash", "-c"});
-        processBuilder.directory(DEFAULT_PATH);
+    public CommandExecutor() {
+        setDEFAULT_PATH( new File(System.getenv("HOME")));
+        this.processBuilder = new ProcessBuilder();
+        this.processBuilder.directory(getDEFAULT_PATH());
     }
     public static void setDEFAULT_PATH(File path) {
         DEFAULT_PATH = path;
@@ -22,14 +24,21 @@ public final class CommandExecutor {
     public static File getDEFAULT_PATH() {
         return DEFAULT_PATH;
     }
-    public static CommandExecutor getInstance() {
-        if (instance == null) {
-            instance = new CommandExecutor();
-        }
-        return instance;
+    private void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+    public int getErrorCode() {
+        return errorCode;
+    }
+    private void setOutput(String output) {
+        this.output = output;
+    }
+    public String getOutput() {
+        return output;
     }
 
-    public int execute() {
+    public boolean execute() {
+        setOutput("");
         try {
             Process process = processBuilder.start();
 
@@ -37,26 +46,27 @@ public final class CommandExecutor {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
+                setOutput(getOutput()+'\n'+line);
             }
-            int exitValue = process.waitFor();
-            return exitValue;
+            setErrorCode(process.waitFor());
+            return true;
         } catch (InterruptedException interruptedException) {
             interruptedException.printStackTrace();
-            return -1;
+            return false;
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return -2;
+            return false;
         }
         
     }
 
     public void addCommand(String command) {
-        processBuilder.command(command);
+        processBuilder.command(new String[] { "/bin/bash", "-c",command});
     }
 
     public void addCommand(String[] commands) {
         for (String command : commands) {
-            addCommand(command);
+            addCommand(new String[] { "/bin/bash", "-c",command});
         }
     }
 
