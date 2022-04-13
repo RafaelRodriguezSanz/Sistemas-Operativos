@@ -11,8 +11,9 @@ public class App {
     public static void main(String[] args) {
         //CommandExecutor cmd = CommandExecutor.getInstance();
         //cmd.addCommand("whoami");
-        OS.userExists(OS.currentUser());
-        OS.userID(OS.currentUser());
+        String currentUser = OS.currentUser();
+        OS.userExists(currentUser);
+        OS.userID(currentUser);
         // OS.cleanAll();
         // OS.createGroup("SO");
         // OS.createUser("SO_User", "r--");

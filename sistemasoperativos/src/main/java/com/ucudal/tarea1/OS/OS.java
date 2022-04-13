@@ -57,21 +57,33 @@ public class OS {
 
     public static boolean userExists(String userName){
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f1 ");
-        return cmd.execute();
+        cmd.addCommand("if getent passwd"+userName+" |cut -d: -f1  &>/dev/null; then echo true;else echo false; fi");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput());
     }
-
+    public static boolean userExists(int userID){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("if getent passwd"+userID+" |cut -d: -f1  &>/dev/null; then echo true;else echo false; fi");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput());
+    }
     public static String userEncriptedPassword(String userName){
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd "+userName+" |cut -d: -f2 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static int userID(String userName){
+    public static String userID(String userName){
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd "+userName+" |cut -d: -f3 ");
         cmd.execute();
-        return Integer.parseInt(cmd.getOutput().trim());
+        return cmd.getOutput();
+    }
+    public static String userName(int userID){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd "+userID+" |cut -d: -f1 ");
+        cmd.execute();
+        return cmd.getOutput();
     }
     public static int userGroupID(String userName){
         CommandExecutor cmd = new CommandExecutor();
@@ -100,6 +112,6 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("whoami");
         cmd.execute();
-        return cmd.getOutput();
+        return cmd.getOutput().trim();
     }
 }
