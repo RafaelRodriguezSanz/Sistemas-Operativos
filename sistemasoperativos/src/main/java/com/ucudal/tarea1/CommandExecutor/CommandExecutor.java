@@ -80,6 +80,12 @@ public final class CommandExecutor {
     
     }
 
+    //Esto funciona con .sh y con .bat
+    public void addScript(String scriptName) {
+	String scriptPath = (new File(System.getProperty("user.dir"))).getParentFile().getParentFile().getAbsolutePath()+File.separator+"Scripts"+File.separator+scriptName;
+	processBuilder.command(scriptPath);    
+    }
+	
     public void addCommand(String[] commands) {
         for (String command : commands) {
             addCommand(new String[] { "/bin/bash", "-c",command});
