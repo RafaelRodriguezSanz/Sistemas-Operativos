@@ -62,6 +62,22 @@ public final class CommandExecutor {
 
     public void addCommand(String command) {
         processBuilder.command(new String[] { "/bin/bash", "-c",command});
+    // -- Linux --
+
+	// Run a shell command
+	//processBuilder.command("bash", "-c", "ls /home/mkyong/");
+
+	// Run a shell script
+	//processBuilder.command("path/to/hello.sh");
+
+	// -- Windows --
+
+	// Run a command
+	//processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\mkyong");
+
+	// Run a bat file
+	//processBuilder.command("C:\\Users\\mkyong\\hello.bat");
+    
     }
 
     public void addCommand(String[] commands) {
