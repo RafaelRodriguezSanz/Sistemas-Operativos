@@ -114,4 +114,18 @@ public class OS {
         cmd.execute();
         return cmd.getOutput().trim();
     }
+
+    //No esta hecho esto todavia, es solo el esqueleto de como podria ser
+    public static boolean backupUser(String userName){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addScript("copiaSeguridad.sh");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput());
+    }
+    public static boolean backupUser(int userID){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addScript("copiaSeguridad.sh");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput());
+    }
 }
