@@ -7,22 +7,19 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public final class CommandExecutor {
-    private static CommandExecutor instance;
-    private static File DEFAULT_PATH;
     private ProcessBuilder processBuilder;
     private String output;
     private int errorCode;
 
     public CommandExecutor() {
-        setDEFAULT_PATH( new File(System.getenv("HOME")));
         this.processBuilder = new ProcessBuilder();
-        this.processBuilder.directory(getDEFAULT_PATH());
+        this.processBuilder.directory( new File(System.getenv("HOME")));
     }
-    public static void setDEFAULT_PATH(File path) {
-        DEFAULT_PATH = path;
+    public void setDirectory(File path) {
+        this.processBuilder.directory(path);
     }
-    public static File getDEFAULT_PATH() {
-        return DEFAULT_PATH;
+    public File getDirectory() {
+        return processBuilder.directory();
     }
     private void setErrorCode(int errorCode) {
         this.errorCode = errorCode;
@@ -82,8 +79,20 @@ public final class CommandExecutor {
 
     //Esto funciona con .sh y con .bat
     public void addScript(String scriptName) {
-	String scriptPath = (new File(System.getProperty("user.dir"))).getParentFile().getParentFile().getAbsolutePath()+File.separator+"Scripts"+File.separator+scriptName;
-	processBuilder.command(scriptPath);    
+        String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
+                            "sistemasoperativos"+File.separator+
+                            "src"+File.separator+
+                            "main"+File.separator+
+                            "java"+File.separator+
+                            "com"+File.separator+
+                            "ucudal"+File.separator+
+                            "tarea1"+File.separator+
+                            "Scripts";
+        this.setDirectory(new File(scriptPath));
+        if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
+            processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
+        }
+        processBuilder.command(new String[] { "sh","./"+scriptName});
     }
 	
     public void addCommand(String[] commands) {
@@ -102,5 +111,9 @@ public final class CommandExecutor {
             i++;
             System.out.println("Command "+i+": "+command);
         }
+    }
+
+    public void printOutput(){
+        System.out.println(this.output);
     }
 }

@@ -11,9 +11,9 @@ public class App {
     public static void main(String[] args) {
         //CommandExecutor cmd = CommandExecutor.getInstance();
         //cmd.addCommand("whoami");
-        String currentUser = OS.currentUser();
-        OS.userExists(currentUser);
-        OS.userID(currentUser);
+        //String currentUser = OS.currentUser();
+        //OS.userExists(currentUser);
+        //OS.userID(currentUser);
         // OS.cleanAll();
         // OS.createGroup("SO");
         // OS.createUser("SO_User", "r--");
@@ -24,6 +24,9 @@ public class App {
         // OS.getUsers();
         // OS.getGroups();
         
-        
+
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addScript("copiaSeguridad.sh");
+        cmd.execute();
     }
 }
