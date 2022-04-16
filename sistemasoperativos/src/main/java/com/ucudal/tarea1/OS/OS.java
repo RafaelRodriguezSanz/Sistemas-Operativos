@@ -115,17 +115,22 @@ public class OS {
         cmd.execute();
         return cmd.getOutput().trim();
     }
-
-    //No esta hecho esto todavia, es solo el esqueleto de como podria ser
     public static boolean backupUser(String userName){
+        return backupUser(userName, false);
+    }
+    public static boolean backupUser(int userName){
+        return backupUser(userName, false);
+    }
+    //No esta hecho esto todavia, es solo el esqueleto de como podria ser
+    public static boolean backupUser(String userName,boolean rewrite){
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh",new String[]{userName});
+        cmd.addScript("copiaSeguridad.sh",new String[]{userName,rewrite?"-r":""});
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput());
     }
-    public static boolean backupUser(int userID){
+    public static boolean backupUser(int userID,boolean rewrite){
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh",new String[]{userName(userID)});
+        cmd.addScript("copiaSeguridad.sh",new String[]{userName(userID),rewrite?"-r":""});
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput());
     }

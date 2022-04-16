@@ -92,7 +92,7 @@ public final class CommandExecutor {
         if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
             processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
         }
-        processBuilder.command(new String[] { "sudo","sh","./"+scriptName,"-u",arguments[0]});
+        processBuilder.command(new String[] { "sudo","sh","./"+scriptName,"-u",arguments[0],arguments[1]});
     }
 	
     public void addCommand(String[] commands) {

@@ -24,8 +24,8 @@ public class App {
         // OS.getUsers();
         // OS.getGroups();
         
-        OS.cleanAllBackups();
+        //OS.cleanAllBackups();
         //OS.cleanUserBackups("rafael");
-        //OS.backupUser("rafael");
+        OS.backupUser("rafael");
     }
 }
