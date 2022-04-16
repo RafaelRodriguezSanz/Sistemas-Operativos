@@ -78,7 +78,7 @@ public final class CommandExecutor {
     }
 
     //Esto funciona con .sh y con .bat
-    public void addScript(String scriptName) {
+    public void addScript(String scriptName,String[] arguments) {
         String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
                             "sistemasoperativos"+File.separator+
                             "src"+File.separator+
@@ -92,7 +92,7 @@ public final class CommandExecutor {
         if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
             processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
         }
-        processBuilder.command(new String[] { "sh","./"+scriptName});
+        processBuilder.command(new String[] { "sudo","sh","./"+scriptName,"-u",arguments[0]});
     }
 	
     public void addCommand(String[] commands) {

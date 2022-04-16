@@ -24,9 +24,8 @@ public class App {
         // OS.getUsers();
         // OS.getGroups();
         
-
-        CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh");
-        cmd.execute();
+        OS.cleanAllBackups();
+        //OS.cleanUserBackups("rafael");
+        //OS.backupUser("rafael");
     }
 }
