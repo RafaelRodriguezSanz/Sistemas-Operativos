@@ -1,13 +1,13 @@
-package com.ucudal.tarea1.UI;
+package com.ucudal.tarea1;
 
-import javafx.event.ActionEvent;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 
-public class MainSceneController {
-
+public class PrimaryController {
     @FXML
     private ProgressIndicator Progress;
 
@@ -38,5 +38,8 @@ public class MainSceneController {
     void removeUser(ActionEvent event) {
 
     }
-
+    @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("secondary");
+    }
 }

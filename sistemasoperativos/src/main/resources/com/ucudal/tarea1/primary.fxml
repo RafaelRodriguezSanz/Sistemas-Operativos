@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneeController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.PrimaryController">
    <children>
       <ImageView fitHeight="94.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../../Users/Rafael/Desktop/2022-04-11%2015_17_12-Obligatorio%201%20-%20Documentos%20de%20Google.png" />
+            <Image fx:id="Banner" url="@home/rafael/Desktop/Repository/Sistemas-Operativos/sistemasoperativos/src/main/resources/com/ucudal/tarea1/baner.png" />
          </image>
       </ImageView>
       <Pane prefHeight="400.0" prefWidth="600.0">
