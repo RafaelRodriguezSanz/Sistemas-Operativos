@@ -55,27 +55,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        // CommandExecutor cmd = CommandExecutor.getInstance();
-        // cmd.addCommand("whoami");
-        // String currentUser = OS.currentUser();
-        // OS.userExists(currentUser);
-        // OS.userID(currentUser);
-        // OS.cleanAll();
-        // OS.createGroup("SO");
-        // OS.createUser("SO_User", "r--");
-        // OS.backup("SO_User");
-        // OS.addPrivileges("SO_User", "r--");
-        // OS.removePrivileges("SO_User", "r--");
-        // OS.getUserInfo("SO_User");
-        // OS.getUsers();
-        // OS.getGroups();
-
-        // OS.cleanAllBackups();
-        // OS.cleanUserBackups("rafael");
-        // OS.backupUser("rafael");
-
-        launch();
         
+        launch();
     }
 
 }

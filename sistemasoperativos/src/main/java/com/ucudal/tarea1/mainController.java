@@ -6,16 +6,19 @@ import com.ucudal.tarea1.OS.OS;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class PrimaryController {
+public class mainController {
 
     @FXML
     private ImageView Banner1;
@@ -33,10 +36,10 @@ public class PrimaryController {
     private TextArea Console2;
 
     @FXML
-    private TreeView<?> GroupViewer2;
+    private StackPane GroupViewer1;
 
     @FXML
-    private TreeView<?> GroupViewer1;
+    private StackPane GroupViewer2;
 
     @FXML
     private ProgressIndicator ProgressIndicator1;
@@ -97,7 +100,7 @@ public class PrimaryController {
     }
 
     public static TextArea getConsole1() {
-        return PrimaryController.Console1;
+        return mainController.Console1;
     }
 
     public TextArea getConsole2() {
@@ -112,11 +115,11 @@ public class PrimaryController {
         return existUserButton;
     }
 
-    public TreeView<?> getGroupViewer2() {
+    public StackPane getGroupViewer2() {
         return GroupViewer2;
     }
 
-    public TreeView<?> getGroupViewer1() {
+    public StackPane getGroupViewer1() {
         return GroupViewer1;
     }
 
@@ -162,11 +165,11 @@ public class PrimaryController {
         Console2.appendText("\n" + text);
     }
 
-    public void setGroupViewer(TreeView<?> groupViewer2) {
+    public void setGroupViewer2(StackPane groupViewer2) {
         GroupViewer2 = groupViewer2;
     }
 
-    public void setGroupViewer1(TreeView<?> groupViewer1) {
+    public void setGroupViewer1(StackPane groupViewer1) {
         GroupViewer1 = groupViewer1;
     }
 
@@ -179,8 +182,16 @@ public class PrimaryController {
 
     @FXML
     void AddGroup(ActionEvent event) {
-        setConsole("Group is been added.");
-        setConsole("Group was added succesfully!");
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("addGroupPrompt"));
+            prompt.setTitle("Add Group");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML
@@ -190,20 +201,32 @@ public class PrimaryController {
 
     @FXML
     void ClearConsoleButton(ActionEvent event) {
-        Console1.setText("Console>>");
-        Console2.setText("Console>>");
+        Scene main = App.getScene();
+        TextArea console1 = (TextArea) main.lookup("#Console1");
+        TextArea console2 = (TextArea) main.lookup("#Console2");
+        console1.setText("Console>>" + '\n');
+        console2.setText("Console>>" + '\n');
     }
 
     @FXML
     void ExistGroup(ActionEvent event) {
-
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("existGroupPrompt"));
+            prompt.setTitle("Search Input");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML
     void ExistUser(ActionEvent event) {
         Stage prompt = new Stage();
         try {
-            Scene scene = new Scene(App.loadFXML("SearchPrompt"));
+            Scene scene = new Scene(App.loadFXML("existUserPrompt"));
             prompt.setTitle("Search Input");
             prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
             prompt.setScene(scene);
@@ -215,17 +238,53 @@ public class PrimaryController {
 
     @FXML
     void RemoveGroup(ActionEvent event) {
-
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("removeGroupPrompt"));
+            prompt.setTitle("Remove Group");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML
     void RemoveUser(ActionEvent event) {
-
+        
     }
 
     @FXML
     void ShowGroup(ActionEvent event) {
 
+        final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
+        final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
+        
+        TreeItem<String> root = new TreeItem<>("Groups");
+        root.setExpanded(true);
+        String[] groups = OS.getGroups();
+        for (String group : groups) {
+            if (!group.isBlank()) {
+                String[] groupArray = group.split(":");
+                if (groupArray.length==4) {
+                    for (String user : (group.split(":")[3]).split(",")) {
+                        if (!user.isBlank()) {
+                            TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0],new ImageView(groupIcon));
+                            groupTree.getChildren().add(new TreeItem<String>(user,new ImageView(userIcon)));
+                            root.getChildren().add(groupTree);
+                        }
+                    }
+                }
+                else{
+                    TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0],new ImageView(groupIcon));
+                    root.getChildren().add(groupTree);
+                }
+            }
+        } 
+        TreeView<String> tree = new TreeView<>(root);
+        // getGroupViewer1().getChildren().add(tree);
+        getGroupViewer2().getChildren().add(tree);
     }
 
     @FXML
@@ -235,7 +294,7 @@ public class PrimaryController {
 
     @FXML
     void addUser(ActionEvent event) {
-
+        
     }
 
     @FXML

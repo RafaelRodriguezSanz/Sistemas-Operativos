@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="143.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.existUserPrompt">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="143.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.existGroupPrompt">
    <children>
-      <TextField fx:id="userNameID" layoutX="18.0" layoutY="42.0" prefHeight="25.0" prefWidth="297.0" promptText="UserName Or UID" />
+      <TextField fx:id="groupNameID" layoutX="18.0" layoutY="42.0" prefHeight="25.0" prefWidth="297.0" promptText="GroupName Or GID" />
       <Button fx:id="searchButton" layoutX="263.0" layoutY="94.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <Label layoutX="18.0" layoutY="14.0" text="Please, enter UserName or UID to search." />
+      <Label layoutX="18.0" layoutY="14.0" text="Please, enter GroupName or GID to search." />
       <Button fx:id="cancelButton" layoutX="18.0" layoutY="94.0" mnemonicParsing="false" onAction="#CancelSearch" text="Cancel" />
    </children>
 </Pane>

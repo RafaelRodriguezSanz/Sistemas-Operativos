@@ -5,15 +5,15 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.ucudal.tarea1.PrimaryController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.ucudal.tarea1.mainController">
   <tabs>
     <Tab closable="false" text="Users">
       <content>
@@ -44,7 +44,7 @@
                         <Button fx:id="ClearConsole1" layoutX="17.0" layoutY="56.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
                      </children>
                   </Pane>
-                  <TreeView fx:id="GroupViewer1" layoutX="282.0" layoutY="21.0" prefHeight="258.0" prefWidth="292.0" />
+                  <StackPane fx:id="GroupViewer1" layoutX="259.0" layoutY="27.0" prefHeight="256.0" prefWidth="322.0" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -56,7 +56,6 @@
                   <Button fx:id="removeGroupButton" layoutX="39.0" layoutY="160.0" mnemonicParsing="false" onAction="#RemoveGroup" text="Remove" />
                   <Button fx:id="showGroupButton" layoutX="40.0" layoutY="68.0" mnemonicParsing="false" onAction="#ShowGroup" text="Show" />
                   <Button fx:id="existGroupButton" layoutX="39.0" layoutY="114.0" mnemonicParsing="false" onAction="#ExistGroup" text="Exist" />
-                  <TreeView fx:id="GroupViewer2" layoutX="282.0" layoutY="21.0" prefHeight="258.0" prefWidth="292.0" />
                   <Pane layoutX="-2.0" layoutY="286.0" prefHeight="86.0" prefWidth="607.0">
                      <children>
                         <ImageView fx:id="Banner2" fitHeight="97.0" fitWidth="607.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
@@ -77,6 +76,7 @@
                         <Button fx:id="clearConsoleButton2" layoutX="17.0" layoutY="56.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
                      </children>
                   </Pane>
+                  <StackPane fx:id="GroupViewer2" layoutX="236.0" layoutY="18.0" prefHeight="266.0" prefWidth="341.0" />
                </children>
             </AnchorPane>
          </content>

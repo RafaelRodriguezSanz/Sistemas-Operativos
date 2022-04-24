@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class SecondaryController {
+public class existUserPrompt {
 
     @FXML
     private Button cancelButton;

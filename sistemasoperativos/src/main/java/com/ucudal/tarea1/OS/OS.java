@@ -4,6 +4,9 @@ import java.io.File;
 
 import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
 
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+
 public class OS {
 
     // Clean all groups and users in the OS except root
@@ -16,8 +19,23 @@ public class OS {
     }
 
     // Create a group if it doesn´t not exist
+    public static boolean groupExist(String groupName) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("if getent group "+groupName +" &>/dev/null; then echo 'true'; else echo 'false'; fi");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput().trim());
+    }
+
+    // Create a group if it doesn´t not exist
     public static boolean createGroup(String groupName) {
-        return true;
+        if (!OS.groupExist(groupName)) {
+            CommandExecutor cmd = new CommandExecutor();
+            cmd.addCommand("echo admin |sudo -S groupadd "+groupName);
+            cmd.execute();
+            return cmd.getOutput().isEmpty();
+        } else {
+            return false;
+        }
     }
 
     // Add a new user (if does not exist), with userName and privilegies
@@ -52,8 +70,11 @@ public class OS {
 
     // Returns groups and their users
     // Returns null if no group could not found
-    public static String getGroups() {
-        return "";
+    public static String[] getGroups() {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent group");
+        cmd.execute();
+        return cmd.getOutput().split("\n");
     }
 
     public static boolean userExists(String userName){
@@ -147,5 +168,15 @@ public class OS {
         cmd.setDirectory(new File ("/home"));
         cmd.execute();
         return cmd.getOutput().isEmpty();
+    }
+    public static boolean removeGroup(String groupName) {
+        if (OS.groupExist(groupName)) {
+            CommandExecutor cmd = new CommandExecutor();
+            cmd.addCommand("echo admin |sudo -S groupdel "+groupName);
+            cmd.execute();
+            return cmd.getOutput().trim().isEmpty();
+        } else {
+            return false;
+        }
     }
 }
