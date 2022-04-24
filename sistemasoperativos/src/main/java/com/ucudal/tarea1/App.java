@@ -31,6 +31,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("main"));
         // scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.setTitle("OS Manager");
         stage.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
         ProgressIndicator progress1 = (ProgressIndicator) scene.lookup("#ProgressIndicator1");

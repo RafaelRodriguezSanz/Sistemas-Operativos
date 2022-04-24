@@ -6,7 +6,6 @@ import com.ucudal.tarea1.OS.OS;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
@@ -285,11 +284,38 @@ public class mainController {
         TreeView<String> tree = new TreeView<>(root);
         // getGroupViewer1().getChildren().add(tree);
         getGroupViewer2().getChildren().add(tree);
+        Scene main = App.getScene();
+        TextArea console1 = (TextArea) main.lookup("#Console1");
+        TextArea console2 = (TextArea) main.lookup("#Console2");
+        console1.appendText("Groups and users where displayed successfully!" + '\n');
+        console2.appendText("Groups and users where displayed successfully!" + '\n');
     }
 
     @FXML
     void ShowUsers(ActionEvent event) {
-
+        final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
+        final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
+        
+        TreeItem<String> root = new TreeItem<>("Users",new ImageView(groupIcon));
+        root.setExpanded(true);
+        String[] users = OS.getUsers();
+        for (String user : users) {
+            if (!user.isBlank()) {
+                String[] userData = user.split(":");
+                TreeItem<String> userTree = new TreeItem<>(userData[0],new ImageView(userIcon));
+                    for (String data : userData) {
+                        userTree.getChildren().add(new TreeItem<String>(data));
+                    }
+                    root.getChildren().add(userTree);
+                }
+        } 
+        TreeView<String> tree = new TreeView<>(root);
+        getGroupViewer1().getChildren().add(tree);
+        Scene main = App.getScene();
+        TextArea console1 = (TextArea) main.lookup("#Console1");
+        TextArea console2 = (TextArea) main.lookup("#Console2");
+        console1.appendText("Users where displayed successfully!" + '\n');
+        console2.appendText("Users where displayed successfully!" + '\n');
     }
 
     @FXML

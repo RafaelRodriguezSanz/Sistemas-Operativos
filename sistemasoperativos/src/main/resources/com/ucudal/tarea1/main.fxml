@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.ucudal.tarea1.mainController">
+<TabPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="com.ucudal.tarea1.mainController">
   <tabs>
     <Tab closable="false" text="Users">
       <content>

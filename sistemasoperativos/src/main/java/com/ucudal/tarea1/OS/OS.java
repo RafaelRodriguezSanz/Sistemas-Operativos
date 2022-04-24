@@ -64,8 +64,11 @@ public class OS {
 
     // Returns all users info
     // Returns null if users could not found
-    public static String getUsers() {
-        return "";
+    public static String[] getUsers() {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd");
+        cmd.execute();
+        return cmd.getOutput().split("\n");
     }
 
     // Returns groups and their users
