@@ -13,6 +13,8 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
+import com.ucudal.tarea1.OS.OS;
+
 /**
  * JavaFX App
  */
@@ -38,8 +40,8 @@ public class App extends Application {
         stage.show();
         TextArea console1 = (TextArea) scene.lookup("#Console1");
         TextArea console2 = (TextArea) scene.lookup("#Console2");
-        console1.setText("Console>>");
-        console2.setText("Console>>");
+        console1.setText("Console>>\n");
+        console2.setText("Console>>\n");
 
     }
 
@@ -73,6 +75,7 @@ public class App extends Application {
         // OS.backupUser("rafael");
 
         launch();
+        
     }
 
 }

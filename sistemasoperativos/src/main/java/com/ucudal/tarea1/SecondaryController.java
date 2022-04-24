@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Window;
 
 public class SecondaryController {
 
@@ -36,22 +35,16 @@ public class SecondaryController {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
-        console1.appendText("Searching User: " + user);
-        console2.appendText("User: " + user);
-        String output;
-        try {
-            int userID = Integer.parseInt(user);
-            if (OS.userExists(userID)) {
-                console1.appendText("User " + user + " exist!");
-                console2.appendText("User " + user + " exist!");
-            }
-        } catch (Exception e) {
-            if (OS.userExists(user)) {
-                console1.appendText("User " + user + " exist!");
-                console2.appendText("User " + user + " exist!");
-            }
+        console1.appendText("Searching User: " + user + '\n');
+        console2.appendText("Searching User: " + user + '\n');
+        if (OS.userExists(user)) {
+            console1.appendText("User " + user + " exist!" + '\n');
+            console2.appendText("User " + user + " exist!" + '\n');
         }
-
+        else{
+            console1.appendText("User " + user + " does not exist" + '\n');
+            console2.appendText("User " + user + " does not exist" + '\n');
+        }
     }
 
 }

@@ -58,15 +58,15 @@ public class OS {
 
     public static boolean userExists(String userName){
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("if getent passwd"+userName+" |cut -d: -f1  &>/dev/null; then echo true;else echo false; fi");
+        cmd.addCommand("if getent passwd \""+userName+"\" &>/dev/null; then echo 'true'; else echo 'false'; fi");
         cmd.execute();
-        return Boolean.parseBoolean(cmd.getOutput());
+        return  Boolean.parseBoolean(cmd.getOutput().trim());
     }
     public static boolean userExists(int userID){
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("if getent passwd"+userID+" |cut -d: -f1  &>/dev/null; then echo true;else echo false; fi");
+        cmd.addCommand("if getent passwd "+userID+" &>/dev/null; then echo 'true'; else echo 'false'; fi");
         cmd.execute();
-        return Boolean.parseBoolean(cmd.getOutput());
+        return Boolean.parseBoolean(cmd.getOutput().trim());
     }
     public static String userEncriptedPassword(String userName){
         CommandExecutor cmd = new CommandExecutor();
