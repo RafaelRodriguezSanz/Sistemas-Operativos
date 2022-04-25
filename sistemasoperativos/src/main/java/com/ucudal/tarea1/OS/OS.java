@@ -4,9 +4,6 @@ import java.io.File;
 
 import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
 
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-
 public class OS {
 
     // Clean all groups and users in the OS except root
@@ -41,7 +38,10 @@ public class OS {
     // Add a new user (if does not exist), with userName and privilegies
     // Return false if it already exist or can´t be created
     public static boolean createUser(String userName, String privilegies) {
-        return true;
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("echo admin |sudo -S useradd "+userName);
+        cmd.execute();
+        return cmd.getOutput().isEmpty();
     }
 
     // Add privileges to userName user
@@ -150,7 +150,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addScript("copiaSeguridad.sh",new String[]{userName,rewrite?"-r":""});
         cmd.execute();
-        return Boolean.parseBoolean(cmd.getOutput());
+        return true;
     }
     public static boolean backupUser(int userID,boolean rewrite){
         CommandExecutor cmd = new CommandExecutor();
@@ -176,6 +176,16 @@ public class OS {
         if (OS.groupExist(groupName)) {
             CommandExecutor cmd = new CommandExecutor();
             cmd.addCommand("echo admin |sudo -S groupdel "+groupName);
+            cmd.execute();
+            return cmd.getOutput().trim().isEmpty();
+        } else {
+            return false;
+        }
+    }
+    public static boolean removeUser(String userName) {
+        if (OS.groupExist(userName)) {
+            CommandExecutor cmd = new CommandExecutor();
+            cmd.addCommand("echo admin |sudo -S userdel "+userName+ "&& rm -r /home/"+userName);
             cmd.execute();
             return cmd.getOutput().trim().isEmpty();
         } else {

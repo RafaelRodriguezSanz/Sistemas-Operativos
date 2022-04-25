@@ -195,7 +195,16 @@ public class mainController {
 
     @FXML
     void BackupUser(ActionEvent event) {
-
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("backupUserPrompt"));
+            prompt.setTitle("Backup User");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML
@@ -251,7 +260,16 @@ public class mainController {
 
     @FXML
     void RemoveUser(ActionEvent event) {
-        
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("removeUserPrompt"));
+            prompt.setTitle("Remove User");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML
@@ -260,9 +278,9 @@ public class mainController {
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
         final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
         
-        TreeItem<String> root = new TreeItem<>("Groups");
-        root.setExpanded(true);
         String[] groups = OS.getGroups();
+        TreeItem<String> root = new TreeItem<>("Groups ("+(groups.length-1)+")");
+        root.setExpanded(true);
         for (String group : groups) {
             if (!group.isBlank()) {
                 String[] groupArray = group.split(":");
@@ -296,9 +314,9 @@ public class mainController {
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
         final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
         
-        TreeItem<String> root = new TreeItem<>("Users",new ImageView(groupIcon));
-        root.setExpanded(true);
         String[] users = OS.getUsers();
+        TreeItem<String> root = new TreeItem<>("Users ("+(users.length-1)+")",new ImageView(groupIcon));
+        root.setExpanded(true);
         for (String user : users) {
             if (!user.isBlank()) {
                 String[] userData = user.split(":");
@@ -320,7 +338,16 @@ public class mainController {
 
     @FXML
     void addUser(ActionEvent event) {
-        
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("addUserPrompt"));
+            prompt.setTitle("Add User");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     @FXML

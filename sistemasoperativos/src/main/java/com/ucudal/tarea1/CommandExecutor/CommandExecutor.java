@@ -80,7 +80,6 @@ public final class CommandExecutor {
     //Esto funciona con .sh y con .bat
     public void addScript(String scriptName,String[] arguments) {
         String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
-                            "sistemasoperativos"+File.separator+
                             "src"+File.separator+
                             "main"+File.separator+
                             "java"+File.separator+
