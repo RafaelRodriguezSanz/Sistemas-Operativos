@@ -10,10 +10,26 @@ public final class CommandExecutor {
     private ProcessBuilder processBuilder;
     private String output;
     private int errorCode;
+    private String password;
+    private String username;
 
+    public void setSudo(String username, String password){
+        setPassword(password);
+        setUsername(username);
+    }
+    private void setPassword(String password) {
+        this.password = password;
+    }
+    private void setUsername(String username) {
+        this.username = username;
+    }
+    public void setProcessBuilder(ProcessBuilder processBuilder) {
+        this.processBuilder = processBuilder;
+    }
     public CommandExecutor() {
-        this.processBuilder = new ProcessBuilder();
-        this.processBuilder.directory( new File(System.getenv("HOME")));
+        ProcessBuilder builder = new ProcessBuilder();
+        builder.directory( new File(System.getenv("HOME")));
+        setProcessBuilder(builder);
     }
     public void setDirectory(File path) {
         this.processBuilder.directory(path);
@@ -96,7 +112,7 @@ public final class CommandExecutor {
 	
     public void addCommand(String[] commands) {
         for (String command : commands) {
-            addCommand(new String[] { "/bin/bash", "-c",command});
+            addCommand(new String[] { "/bin/bash", "-c","echo "+this.password+" | su -c "+command + " "+ this.username});
         }
     }
 

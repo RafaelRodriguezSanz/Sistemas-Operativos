@@ -277,9 +277,10 @@ public class mainController {
 
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
         final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
+        final Image homeIcon =new Image(getClass().getResourceAsStream("homeIcon.png"));
         
         String[] groups = OS.getGroups();
-        TreeItem<String> root = new TreeItem<>("Groups ("+(groups.length-1)+")");
+        TreeItem<String> root = new TreeItem<>("Groups ("+(groups.length-1)+")",new ImageView(homeIcon));
         root.setExpanded(true);
         for (String group : groups) {
             if (!group.isBlank()) {
