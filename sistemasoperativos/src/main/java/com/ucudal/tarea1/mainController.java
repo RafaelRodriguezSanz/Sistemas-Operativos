@@ -44,12 +44,6 @@ public class mainController {
     private StackPane GroupViewer2;
 
     @FXML
-    private ProgressIndicator ProgressIndicator1;
-
-    @FXML
-    private ProgressIndicator ProgressIndicator2;
-
-    @FXML
     private Button addGroupButton;
 
     @FXML
@@ -125,14 +119,6 @@ public class mainController {
         return GroupViewer1;
     }
 
-    public ProgressIndicator getProgressIndicator1() {
-        return ProgressIndicator1;
-    }
-
-    public ProgressIndicator getProgressIndicator2() {
-        return ProgressIndicator2;
-    }
-
     public Button getRemoveGroupButton() {
         return removeGroupButton;
     }
@@ -173,11 +159,6 @@ public class mainController {
 
     public void setGroupViewer1(StackPane groupViewer1) {
         GroupViewer1 = groupViewer1;
-    }
-
-    public void setProgressIndicator(Double progress) {
-        ProgressIndicator1.setProgress(progress);
-        ProgressIndicator2.setProgress(progress);
     }
 
     // #endregion

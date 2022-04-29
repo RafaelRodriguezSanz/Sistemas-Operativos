@@ -1,5 +1,6 @@
 package com.ucudal.tarea1;
 
+import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
 import com.ucudal.tarea1.OS.OS;
 
 import javafx.event.ActionEvent;
@@ -50,6 +51,7 @@ public class passwordPrompt {
             console2.appendText("User Loging successfully!" + '\n');
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
+            CommandExecutor.setSudo(this.userNameID.getText(), this.password.getText());
         } else {
             this.message.setVisible(true);
         }
@@ -57,7 +59,10 @@ public class passwordPrompt {
 
     @FXML
     void cancelLogin(ActionEvent event) {
-
+        Node prompt = (Node) event.getSource();
+        prompt.getScene().getWindow().hide();
+        Scene main = App.getScene();
+        main.getWindow().hide();
     }
 
 }
