@@ -6,10 +6,19 @@ import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
 
 public class OS {
 
+    public static boolean checkSudo(String user, String password) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand(
+                "if ( echo " + password + " | su -c true " + user + ") ; then echo \"true\"; else echo \"false\"; fi");
+        cmd.execute();
+        return cmd.getOutput().trim().contains("true");
+    }
+
     // Clean all groups and users in the OS except root
     public static boolean cleanAllUsers() {
         return true;
     }
+
     // Clean all groups and users in the OS except root
     public static boolean cleanAllGropus() {
         return true;
@@ -18,7 +27,7 @@ public class OS {
     // Create a group if it doesn´t not exist
     public static boolean groupExist(String groupName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("if getent group "+groupName +" &>/dev/null; then echo 'true'; else echo 'false'; fi");
+        cmd.addCommand("if getent group " + groupName + " &>/dev/null; then echo 'true'; else echo 'false'; fi");
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput().trim());
     }
@@ -27,7 +36,7 @@ public class OS {
     public static boolean createGroup(String groupName) {
         if (!OS.groupExist(groupName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("echo admin |sudo -S groupadd "+groupName);
+            cmd.addCommand("echo admin |sudo -S groupadd " + groupName);
             cmd.execute();
             return cmd.getOutput().isEmpty();
         } else {
@@ -39,7 +48,7 @@ public class OS {
     // Return false if it already exist or can´t be created
     public static boolean createUser(String userName, String privilegies) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("echo admin |sudo -S useradd "+userName);
+        cmd.addCommand("echo admin |sudo -S useradd " + userName);
         cmd.execute();
         return cmd.getOutput().isEmpty();
     }
@@ -58,7 +67,7 @@ public class OS {
     // Returns null if user was not found or info could not be get
     public static String getUserInfo(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName);
+        cmd.addCommand("getent passwd " + userName);
         return cmd.getOutput();
     }
 
@@ -80,112 +89,129 @@ public class OS {
         return cmd.getOutput().split("\n");
     }
 
-    public static boolean userExists(String userName){
+    public static boolean userExists(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("if getent passwd \""+userName+"\" &>/dev/null; then echo 'true'; else echo 'false'; fi");
-        cmd.execute();
-        return  Boolean.parseBoolean(cmd.getOutput().trim());
-    }
-    public static boolean userExists(int userID){
-        CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("if getent passwd "+userID+" &>/dev/null; then echo 'true'; else echo 'false'; fi");
+        cmd.addCommand("if getent passwd \"" + userName + "\" &>/dev/null; then echo 'true'; else echo 'false'; fi");
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput().trim());
     }
-    public static String userEncriptedPassword(String userName){
+
+    public static boolean userExists(int userID) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f2 ");
+        cmd.addCommand("if getent passwd " + userID + " &>/dev/null; then echo 'true'; else echo 'false'; fi");
+        cmd.execute();
+        return Boolean.parseBoolean(cmd.getOutput().trim());
+    }
+
+    public static String userEncriptedPassword(String userName) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f2 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static String userID(String userName){
+
+    public static String userID(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f3 ");
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f3 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static String userName(int userID){
+
+    public static String userName(int userID) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userID+" |cut -d: -f1 ");
+        cmd.addCommand("getent passwd " + userID + " |cut -d: -f1 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static int userGroupID(String userName){
+
+    public static int userGroupID(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f4 ");
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f4 ");
         cmd.execute();
         return Integer.parseInt(cmd.getOutput().trim());
     }
-    public static String userDescription(String userName){
+
+    public static String userDescription(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f5 ");
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f5 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static String userHomeFolder(String userName){
+
+    public static String userHomeFolder(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f6 ");
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f6 ");
         return cmd.getOutput();
     }
-    public static String userShell(String userName){
+
+    public static String userShell(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd "+userName+" |cut -d: -f7 ");
+        cmd.addCommand("getent passwd " + userName + " |cut -d: -f7 ");
         cmd.execute();
         return cmd.getOutput();
     }
-    public static String currentUser(){
+
+    public static String currentUser() {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("whoami");
         cmd.execute();
         return cmd.getOutput().trim();
     }
-    public static boolean backupUser(String userName){
+
+    public static boolean backupUser(String userName) {
         return backupUser(userName, false);
     }
-    public static boolean backupUser(int userName){
+
+    public static boolean backupUser(int userName) {
         return backupUser(userName, false);
     }
-    //No esta hecho esto todavia, es solo el esqueleto de como podria ser
-    public static boolean backupUser(String userName,boolean rewrite){
+
+    // No esta hecho esto todavia, es solo el esqueleto de como podria ser
+    public static boolean backupUser(String userName, boolean rewrite) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh",new String[]{userName,rewrite?"-r":""});
+        cmd.addScript("copiaSeguridad.sh", new String[] { userName, rewrite ? "-r" : "" });
         cmd.execute();
         return true;
     }
-    public static boolean backupUser(int userID,boolean rewrite){
+
+    public static boolean backupUser(int userID, boolean rewrite) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh",new String[]{userName(userID),rewrite?"-r":""});
+        cmd.addScript("copiaSeguridad.sh", new String[] { userName(userID), rewrite ? "-r" : "" });
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput());
     }
-    public static boolean cleanAllBackups(){
+
+    public static boolean cleanAllBackups() {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("sudo rm -r ./backups");
-        cmd.setDirectory(new File ("/home"));
+        cmd.setDirectory(new File("/home"));
         cmd.execute();
         return cmd.getOutput().isEmpty();
     }
-    public static boolean cleanUserBackups(String userName){
+
+    public static boolean cleanUserBackups(String userName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("sudo rm -r ./backups/"+userName);
-        cmd.setDirectory(new File ("/home"));
+        cmd.addCommand("sudo rm -r ./backups/" + userName);
+        cmd.setDirectory(new File("/home"));
         cmd.execute();
         return cmd.getOutput().isEmpty();
     }
+
     public static boolean removeGroup(String groupName) {
         if (OS.groupExist(groupName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("echo admin |sudo -S groupdel "+groupName);
+            cmd.addCommand("echo admin |sudo -S groupdel " + groupName);
             cmd.execute();
             return cmd.getOutput().trim().isEmpty();
         } else {
             return false;
         }
     }
+
     public static boolean removeUser(String userName) {
         if (OS.groupExist(userName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("echo admin |sudo -S userdel "+userName+ "&& rm -r /home/"+userName);
+            cmd.addCommand("echo admin |sudo -S userdel " + userName + "&& rm -r /home/" + userName);
             cmd.execute();
             return cmd.getOutput().trim().isEmpty();
         } else {

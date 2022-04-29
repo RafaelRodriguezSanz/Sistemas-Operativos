@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -34,16 +35,23 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setTitle("OS Manager");
         stage.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
-        ProgressIndicator progress1 = (ProgressIndicator) scene.lookup("#ProgressIndicator1");
-        ProgressIndicator progress2 = (ProgressIndicator) scene.lookup("#ProgressIndicator2");
-        progress1.setVisible(false);
-        progress2.setVisible(false);
         stage.show();
         TextArea console1 = (TextArea) scene.lookup("#Console1");
         TextArea console2 = (TextArea) scene.lookup("#Console2");
         console1.setText("Console>>\n");
         console2.setText("Console>>\n");
-
+        TabPane all = (TabPane) scene.lookup("#all");
+        all.setDisable(true);
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("passwordPrompt"));
+            prompt.setTitle("Login SUDO user");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -56,7 +64,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        
+
         launch();
     }
 

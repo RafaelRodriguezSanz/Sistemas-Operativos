@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -18,6 +19,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class mainController {
+    @FXML
+    private TabPane all;
 
     @FXML
     private ImageView Banner1;
@@ -276,30 +279,29 @@ public class mainController {
     void ShowGroup(ActionEvent event) {
 
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
-        final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
-        final Image homeIcon =new Image(getClass().getResourceAsStream("homeIcon.png"));
-        
+        final Image groupIcon = new Image(getClass().getResourceAsStream("groupIcon.png"));
+        final Image homeIcon = new Image(getClass().getResourceAsStream("homeIcon.png"));
+
         String[] groups = OS.getGroups();
-        TreeItem<String> root = new TreeItem<>("Groups ("+(groups.length-1)+")",new ImageView(homeIcon));
+        TreeItem<String> root = new TreeItem<>("Groups (" + (groups.length - 1) + ")", new ImageView(homeIcon));
         root.setExpanded(true);
         for (String group : groups) {
             if (!group.isBlank()) {
                 String[] groupArray = group.split(":");
-                if (groupArray.length==4) {
+                if (groupArray.length == 4) {
                     for (String user : (group.split(":")[3]).split(",")) {
                         if (!user.isBlank()) {
-                            TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0],new ImageView(groupIcon));
-                            groupTree.getChildren().add(new TreeItem<String>(user,new ImageView(userIcon)));
+                            TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0], new ImageView(groupIcon));
+                            groupTree.getChildren().add(new TreeItem<String>(user, new ImageView(userIcon)));
                             root.getChildren().add(groupTree);
                         }
                     }
-                }
-                else{
-                    TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0],new ImageView(groupIcon));
+                } else {
+                    TreeItem<String> groupTree = new TreeItem<>(group.split(":")[0], new ImageView(groupIcon));
                     root.getChildren().add(groupTree);
                 }
             }
-        } 
+        }
         TreeView<String> tree = new TreeView<>(root);
         // getGroupViewer1().getChildren().add(tree);
         getGroupViewer2().getChildren().add(tree);
@@ -313,21 +315,21 @@ public class mainController {
     @FXML
     void ShowUsers(ActionEvent event) {
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
-        final Image groupIcon =new Image(getClass().getResourceAsStream("groupIcon.png"));
-        
+        final Image groupIcon = new Image(getClass().getResourceAsStream("groupIcon.png"));
+
         String[] users = OS.getUsers();
-        TreeItem<String> root = new TreeItem<>("Users ("+(users.length-1)+")",new ImageView(groupIcon));
+        TreeItem<String> root = new TreeItem<>("Users (" + (users.length - 1) + ")", new ImageView(groupIcon));
         root.setExpanded(true);
         for (String user : users) {
             if (!user.isBlank()) {
                 String[] userData = user.split(":");
-                TreeItem<String> userTree = new TreeItem<>(userData[0],new ImageView(userIcon));
-                    for (String data : userData) {
-                        userTree.getChildren().add(new TreeItem<String>(data));
-                    }
-                    root.getChildren().add(userTree);
+                TreeItem<String> userTree = new TreeItem<>(userData[0], new ImageView(userIcon));
+                for (String data : userData) {
+                    userTree.getChildren().add(new TreeItem<String>(data));
                 }
-        } 
+                root.getChildren().add(userTree);
+            }
+        }
         TreeView<String> tree = new TreeView<>(root);
         getGroupViewer1().getChildren().add(tree);
         Scene main = App.getScene();
@@ -349,11 +351,6 @@ public class mainController {
             e.printStackTrace();
         }
         prompt.show();
-    }
-
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("main");
     }
 
 }
