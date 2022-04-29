@@ -9,6 +9,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -45,6 +46,8 @@ public class App extends Application {
         Stage prompt = new Stage();
         try {
             Scene scene = new Scene(App.loadFXML("passwordPrompt"));
+            Text message = (Text) scene.lookup("#message");
+            message.setVisible(false);
             prompt.setTitle("Login SUDO user");
             prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
             prompt.setScene(scene);

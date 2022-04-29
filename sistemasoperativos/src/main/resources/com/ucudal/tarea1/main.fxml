@@ -36,15 +36,6 @@
                               <Image url="@baner.png" />
                            </image>
                         </ImageView>
-                        <ProgressIndicator fx:id="ProgressIndicator1" layoutX="27.0" layoutY="18.0" progress="0.55">
-                           <effect>
-                              <InnerShadow choke="1.0" height="0.0" radius="2.0" width="10.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </InnerShadow>
-                           </effect>
-                        </ProgressIndicator>
                         <TextArea fx:id="Console1" editable="false" layoutX="72.0" layoutY="18.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
                         <Button fx:id="ClearConsole1" layoutX="17.0" layoutY="56.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
                      </children>

@@ -51,9 +51,7 @@ public class passwordPrompt {
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
         } else {
-            Scene prompt = App.getScene();
-            Text message = (Text) prompt.lookup("#message");
-            message.setVisible(true);
+            this.message.setVisible(true);
         }
     }
 
