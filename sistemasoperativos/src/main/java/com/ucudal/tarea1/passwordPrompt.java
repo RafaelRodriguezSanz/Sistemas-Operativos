@@ -40,7 +40,7 @@ public class passwordPrompt {
     @FXML
     void Login(ActionEvent event) {
         Scene prompt = App.getScene();
-        TextArea message = (TextArea) prompt.lookup("#message");
+        Text message = (Text) prompt.lookup("#message");
         message.setVisible(false);
         if (OS.checkSudo(this.userNameID.getText(), this.password.getText())) {
             prompt.getWindow().hide();
