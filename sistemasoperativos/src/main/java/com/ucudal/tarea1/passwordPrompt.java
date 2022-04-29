@@ -39,11 +39,9 @@ public class passwordPrompt {
 
     @FXML
     void Login(ActionEvent event) {
-        Scene prompt = App.getScene();
-        Text message = (Text) prompt.lookup("#message");
-        message.setVisible(false);
         if (OS.checkSudo(this.userNameID.getText(), this.password.getText())) {
-            prompt.getWindow().hide();
+            Node prompt = (Node) event.getSource();
+            prompt.getScene().getWindow().hide();
             Scene main = App.getScene();
 
             TextArea console1 = (TextArea) main.lookup("#Console1");
@@ -53,7 +51,8 @@ public class passwordPrompt {
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
         } else {
-
+            Scene prompt = App.getScene();
+            Text message = (Text) prompt.lookup("#message");
             message.setVisible(true);
         }
     }
