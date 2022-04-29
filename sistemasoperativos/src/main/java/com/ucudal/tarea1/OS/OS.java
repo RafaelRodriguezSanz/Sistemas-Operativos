@@ -8,8 +8,7 @@ public class OS {
 
     public static boolean checkSudo(String user, String password) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand(
-                "if ( echo " + password + " | su -c true " + user + ") ; then echo \"true\"; else echo \"false\"; fi");
+        cmd.addCommand("if((case \"" + user + "\" in *$(grep '^sudo:.*$' /etc/group | cut -d: -f4)*) true;;*) false;;esac) && (if ( echo " + password + " | su -c true " + user + " ); then true; else false; fi));then echo \"true\"; else echo \"false\"; fi");
         cmd.execute();
         return cmd.getOutput().trim().contains("true");
     }
