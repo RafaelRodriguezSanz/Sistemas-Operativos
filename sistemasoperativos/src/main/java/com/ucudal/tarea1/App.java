@@ -1,31 +1,74 @@
 package com.ucudal.tarea1;
 
-import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+
+import java.io.IOException;
+
 import com.ucudal.tarea1.OS.OS;
 
 /**
- * Hello world!
- *
+ * JavaFX App
  */
-public class App {
-    public static void main(String[] args) {
-        //CommandExecutor cmd = CommandExecutor.getInstance();
-        //cmd.addCommand("whoami");
-        //String currentUser = OS.currentUser();
-        //OS.userExists(currentUser);
-        //OS.userID(currentUser);
-        // OS.cleanAll();
-        // OS.createGroup("SO");
-        // OS.createUser("SO_User", "r--");
-        // OS.backup("SO_User");
-        // OS.addPrivileges("SO_User", "r--");
-        // OS.removePrivileges("SO_User", "r--");
-        // OS.getUserInfo("SO_User");
-        // OS.getUsers();
-        // OS.getGroups();
-        
-        //OS.cleanAllBackups();
-        //OS.cleanUserBackups("rafael");
-        OS.backupUser("rafael");
+public class App extends Application {
+
+    private static Scene scene;
+
+    public static Scene getScene() {
+        return scene;
     }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        scene = new Scene(loadFXML("main"));
+        // scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.setTitle("OS Manager");
+        stage.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+        stage.show();
+        TextArea console1 = (TextArea) scene.lookup("#Console1");
+        TextArea console2 = (TextArea) scene.lookup("#Console2");
+        console1.setText("Console>>\n");
+        console2.setText("Console>>\n");
+        TabPane all = (TabPane) scene.lookup("#all");
+        all.setDisable(true);
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("passwordPrompt"));
+            Text message = (Text) scene.lookup("#message");
+            message.setVisible(false);
+            prompt.setTitle("Login SUDO user");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+
+        launch();
+    }
+
 }

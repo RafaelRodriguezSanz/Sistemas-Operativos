@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Practice Suite">
-  <test name="First Test">
-    <classes>
-      <class name="com.ucudal.scheduler.AppTest"/>
-      </classes>
-  </test> <!-- Test --> 
-</suite> <!-- Suite -->

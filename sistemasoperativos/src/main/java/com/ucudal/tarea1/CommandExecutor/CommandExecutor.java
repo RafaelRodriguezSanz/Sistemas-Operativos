@@ -10,10 +10,26 @@ public final class CommandExecutor {
     private ProcessBuilder processBuilder;
     private String output;
     private int errorCode;
+    private static String password;
+    private static String username;
 
+    public static void setSudo(String username, String password){
+        setPassword(password);
+        setUsername(username);
+    }
+    private static void setPassword(String password) {
+        CommandExecutor.password = password;
+    }
+    private static void setUsername(String username) {
+        CommandExecutor.username = username;
+    }
+    public void setProcessBuilder(ProcessBuilder processBuilder) {
+        this.processBuilder = processBuilder;
+    }
     public CommandExecutor() {
-        this.processBuilder = new ProcessBuilder();
-        this.processBuilder.directory( new File(System.getenv("HOME")));
+        ProcessBuilder builder = new ProcessBuilder();
+        builder.directory( new File(System.getenv("HOME")));
+        setProcessBuilder(builder);
     }
     public void setDirectory(File path) {
         this.processBuilder.directory(path);
@@ -58,7 +74,7 @@ public final class CommandExecutor {
     }
 
     public void addCommand(String command) {
-        processBuilder.command(new String[] { "/bin/bash", "-c",command});
+        processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"| "+command + "\" "+ CommandExecutor.username});
     // -- Linux --
 
 	// Run a shell command
@@ -80,7 +96,6 @@ public final class CommandExecutor {
     //Esto funciona con .sh y con .bat
     public void addScript(String scriptName,String[] arguments) {
         String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
-                            "sistemasoperativos"+File.separator+
                             "src"+File.separator+
                             "main"+File.separator+
                             "java"+File.separator+
@@ -92,12 +107,12 @@ public final class CommandExecutor {
         if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
             processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
         }
-        processBuilder.command(new String[] { "sudo","sh","./"+scriptName,"-u",arguments[0],arguments[1]});
+        processBuilder.command(new String[] { "echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"|sudo -S sh","./"+scriptName,"-u",arguments[0],arguments[1] + "\" "+ CommandExecutor.username});
     }
 	
     public void addCommand(String[] commands) {
         for (String command : commands) {
-            addCommand(new String[] { "/bin/bash", "-c",command});
+            addCommand(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"| "+command + "\" "+ CommandExecutor.username});
         }
     }
 
