@@ -92,9 +92,11 @@ public final class CommandExecutor {
 	//processBuilder.command("C:\\Users\\mkyong\\hello.bat");
     
     }
-
+    public void addScript(String scriptName) {
+        this.addScript(scriptName,"");
+    }
     //Esto funciona con .sh y con .bat
-    public void addScript(String scriptName,String[] arguments) {
+    public void addScript(String scriptName,String arguments) {
         String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
                             "src"+File.separator+
                             "main"+File.separator+
@@ -103,11 +105,9 @@ public final class CommandExecutor {
                             "ucudal"+File.separator+
                             "tarea1"+File.separator+
                             "Scripts";
+        this.addCommand("sudo -S sh "+scriptName);
         this.setDirectory(new File(scriptPath));
-        if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
-            processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
-        }
-        processBuilder.command(new String[] { "echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"|sudo -S sh","./"+scriptName,"-u",arguments[0],arguments[1] + "\" "+ CommandExecutor.username});
+        
     }
 	
     public void addCommand(String[] commands) {

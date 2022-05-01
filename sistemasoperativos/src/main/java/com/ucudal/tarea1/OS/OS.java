@@ -169,14 +169,15 @@ public class OS {
     // No esta hecho esto todavia, es solo el esqueleto de como podria ser
     public static boolean backupUser(String userName, boolean rewrite) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh", new String[] { userName, rewrite ? "-r" : "" });
+        cmd.addScript("copiaSeguridad.sh", userName+" "+(rewrite ? "-r" : ""));
         cmd.execute();
-        return true;
+        cmd.showCommands();
+        return cmd.getOutput().contains("true");
     }
 
     public static boolean backupUser(int userID, boolean rewrite) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh", new String[] { userName(userID), rewrite ? "-r" : "" });
+        cmd.addScript("copiaSeguridad.sh", userID+" "+(rewrite ? "-r" : ""));
         cmd.execute();
         return Boolean.parseBoolean(cmd.getOutput());
     }
@@ -218,5 +219,12 @@ public class OS {
         } else {
             return false;
         }
+    }
+
+    public static void addChrontab (){
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addScript("createCrontab.sh");
+        cmd.execute();
+        cmd.showCommands();
     }
 }
