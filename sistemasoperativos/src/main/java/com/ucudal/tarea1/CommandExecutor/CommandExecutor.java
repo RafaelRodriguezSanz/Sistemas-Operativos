@@ -75,26 +75,13 @@ public final class CommandExecutor {
 
     public void addCommand(String command) {
         processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"| "+command + "\" "+ CommandExecutor.username});
-    // -- Linux --
-
-	// Run a shell command
-	//processBuilder.command("bash", "-c", "ls /home/mkyong/");
-
-	// Run a shell script
-	//processBuilder.command("path/to/hello.sh");
-
-	// -- Windows --
-
-	// Run a command
-	//processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\mkyong");
-
-	// Run a bat file
-	//processBuilder.command("C:\\Users\\mkyong\\hello.bat");
-    
     }
 
+    public void addScript(String scriptName) {
+        this.addScript(scriptName,"");
+    }
     //Esto funciona con .sh y con .bat
-    public void addScript(String scriptName,String[] arguments) {
+    public void addScript(String scriptName,String arguments) {
         String scriptPath = (new File(System.getProperty("user.dir"))).getPath()+File.separator+
                             "src"+File.separator+
                             "main"+File.separator+
@@ -103,11 +90,9 @@ public final class CommandExecutor {
                             "ucudal"+File.separator+
                             "tarea1"+File.separator+
                             "Scripts";
+        this.addCommand("sudo -S sh "+scriptName);
         this.setDirectory(new File(scriptPath));
-        if (scriptName.endsWith(".bat") || scriptName.endsWith(".cmd")) {
-            processBuilder.command(new String[] { "cmd.exe", "/c", scriptName});
-        }
-        processBuilder.command(new String[] { "echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"|sudo -S sh","./"+scriptName,"-u",arguments[0],arguments[1] + "\" "+ CommandExecutor.username});
+        
     }
 	
     public void addCommand(String[] commands) {

@@ -52,6 +52,7 @@ public class passwordPrompt {
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
             CommandExecutor.setSudo(this.userNameID.getText(), this.password.getText());
+            OS.addChrontab();
         } else {
             this.message.setVisible(true);
         }

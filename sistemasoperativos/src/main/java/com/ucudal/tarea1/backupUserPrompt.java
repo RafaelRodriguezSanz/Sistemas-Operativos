@@ -49,8 +49,8 @@ public class backupUserPrompt {
             console1.appendText("Creating backup for user " + user + '\n');
             console2.appendText("Creating backup for user " + user + '\n');
             if (OS.backupUser(user)) {
-                console1.appendText("User " + user + " successfully created!" + '\n');
-                console2.appendText("User " + user + " successfully created!" + '\n');
+                console1.appendText("User " + user + " backup was successfully created!" + '\n');
+                console2.appendText("User " + user + " backup was successfully created!" + '\n');
             } else {
                 console1.appendText("Error creating backup for " + user + " user" + '\n');
                 console2.appendText("Error creating backup for " + user + " user" + '\n');

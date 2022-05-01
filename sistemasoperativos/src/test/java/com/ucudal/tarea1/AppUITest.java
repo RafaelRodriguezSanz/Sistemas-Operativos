@@ -22,7 +22,6 @@ import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.osgi.service.TestFx;
 
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -37,10 +36,6 @@ public class AppUITest extends ApplicationTest {
             stage.setResizable(false);
             stage.setTitle("OS Manager");
             stage.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
-            ProgressIndicator progress1 = (ProgressIndicator) scene.lookup("#ProgressIndicator1");
-            ProgressIndicator progress2 = (ProgressIndicator) scene.lookup("#ProgressIndicator2");
-            progress1.setVisible(false);
-            progress2.setVisible(false);
             stage.show();
             TextArea console1 = (TextArea) scene.lookup("#Console1");
             TextArea console2 = (TextArea) scene.lookup("#Console2");

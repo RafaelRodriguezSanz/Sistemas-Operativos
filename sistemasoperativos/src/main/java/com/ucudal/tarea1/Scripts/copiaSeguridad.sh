@@ -58,4 +58,4 @@ time=$(((end-start)/1000000000));
 echo "Elapsed time: $time sec.";
 echo $files " backuped files ($size)"
 echo "Backup succesfully created!" 
-
+echo "true"
