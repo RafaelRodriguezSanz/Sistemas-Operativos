@@ -76,7 +76,6 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("sudo -S getent passwd");
         cmd.execute();
-        cmd.showCommands();
         return cmd.getOutput().split("\n");
     }
 

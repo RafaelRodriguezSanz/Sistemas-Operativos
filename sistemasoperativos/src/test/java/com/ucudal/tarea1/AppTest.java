@@ -2,6 +2,7 @@ package com.ucudal.tarea1;
 
 import static org.junit.Assert.*;
 
+import com.ucudal.tarea1.CommandExecutor.CommandExecutor;
 import com.ucudal.tarea1.OS.OS;
 
 import org.junit.After;
@@ -13,6 +14,7 @@ public class AppTest {
     
     @Before
     public void init(){
+        CommandExecutor.setSudo("rafael", "admin");
         OS.createUser("userexists","");
         OS.createUser("userremove","");
         OS.createUser("someuser","");
