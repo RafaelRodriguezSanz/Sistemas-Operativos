@@ -72,8 +72,25 @@ public class passwordPrompt {
 
     @FXML
     void enter(KeyEvent event) {
-        if (event.toString() == "") {
-            Login(new ActionEvent());
+        if (event.toString().contains("ENTER")) {
+            if (OS.checkSudo(this.userNameID.getText(), this.password.getText())) {
+                Node prompt = (Node) event.getSource();
+                prompt.getScene().getWindow().hide();
+                Scene main = App.getScene();
+    
+                TextArea console1 = (TextArea) main.lookup("#Console1");
+                TextArea console2 = (TextArea) main.lookup("#Console2");
+                TextArea console3 = (TextArea) main.lookup("#Console3");
+                console1.appendText("User Loging successfully!" + '\n');
+                console2.appendText("User Loging successfully!" + '\n');
+                console3.appendText("User Loging successfully!" + '\n');
+                TabPane all = (TabPane) main.lookup("#all");
+                all.setDisable(false);
+                CommandExecutor.setSudo(this.userNameID.getText(), this.password.getText());
+                // OS.addChrontab();
+            } else {
+                this.message.setVisible(true);
+            }
         }
     }
 }
