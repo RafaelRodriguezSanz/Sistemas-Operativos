@@ -35,15 +35,19 @@ public class existUserPrompt {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Searching User: " + user + '\n');
         console2.appendText("Searching User: " + user + '\n');
+        console3.appendText("Searching User: " + user + '\n');
         if (OS.userExists(user)) {
             console1.appendText("User " + user + " exist!" + '\n');
             console2.appendText("User " + user + " exist!" + '\n');
+            console3.appendText("User " + user + " exist!" + '\n');
         }
         else{
             console1.appendText("User " + user + " does not exist" + '\n');
             console2.appendText("User " + user + " does not exist" + '\n');
+            console3.appendText("User " + user + " does not exist" + '\n');
         }
     }
 

@@ -357,4 +357,12 @@ public class OS {
         
         return cmd.getOutput().trim();
     }
+
+    public static String getStats() {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("cat /home/Estadisticas/stats.txt");
+        cmd.execute();
+        return cmd.getOutput();
+    }
+
 }

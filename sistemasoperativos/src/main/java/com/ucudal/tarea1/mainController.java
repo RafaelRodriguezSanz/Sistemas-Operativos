@@ -7,10 +7,10 @@ import com.ucudal.tarea1.OS.OS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
@@ -223,8 +223,10 @@ public class mainController {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.setText("Console>>" + '\n');
         console2.setText("Console>>" + '\n');
+        console3.setText("Console>>" + '\n');
     }
 
     @FXML
@@ -316,6 +318,7 @@ public class mainController {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Groups and users where displayed successfully!" + '\n');
         console2.appendText("Groups and users where displayed successfully!" + '\n');
     }
@@ -343,8 +346,10 @@ public class mainController {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Users where displayed successfully!" + '\n');
         console2.appendText("Users where displayed successfully!" + '\n');
+        console3.appendText("Users where displayed successfully!" + '\n');
     }
 
     @FXML
@@ -363,11 +368,21 @@ public class mainController {
 
     @FXML
     void copy(ActionEvent event) {
-
+        String stats = OS.getStats();
+        StringSelection selection = new StringSelection(stats);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(selection, null); 
     }
 
     @FXML
     void details(ActionEvent event) {
-
+        String output = OS.getStats();
+        Scene main = App.getScene();
+        TextArea console1 = (TextArea) main.lookup("#Console1");
+        TextArea console2 = (TextArea) main.lookup("#Console2");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
+        console1.appendText("Details: "+output+'\n');
+        console2.appendText("Details: "+output+'\n');
+        console3.appendText("Details: "+output+'\n');
     }
 }

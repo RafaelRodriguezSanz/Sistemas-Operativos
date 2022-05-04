@@ -40,8 +40,10 @@ public class App extends Application {
         stage.show();
         TextArea console1 = (TextArea) scene.lookup("#Console1");
         TextArea console2 = (TextArea) scene.lookup("#Console2");
+        TextArea console3 = (TextArea) scene.lookup("#Console3");
         console1.setText("Console>>\n");
         console2.setText("Console>>\n");
+        console3.setText("Console>>\n");
         TabPane all = (TabPane) scene.lookup("#all");
         all.setDisable(true);
         Stage prompt = new Stage();
@@ -70,16 +72,19 @@ public class App extends Application {
             String cpus = OS.getCPUS();
             String ramUsed = OS.getUsedRAM();
             String diskFree = OS.getDiskFreeSpace();
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("CPU USAGE: " + cpu + "%\n");
+            builder.append("RAM USAGE: " + ram + "%\n");
+            builder.append("DISK USAGE: " + disk + "\n");
+            builder.append("CPUs: " + cpus + '\n');
+            builder.append("RAM USED: " + ramUsed + "MB\n");
+            builder.append("DISK FREE SPACE: " + diskFree + '\n');
+
+            TextArea stats = (TextArea) scene.lookup("#stats");
+            stats.setText(builder.toString());
 
             Platform.runLater(() -> {
-                StringBuilder builder = new StringBuilder();
-                builder.append("CPU USAGE: " + cpu + '\n');
-                builder.append("RAM USAGE: " + ram + '\n');
-                builder.append("DISK USAGE: " + disk + '\n');
-                builder.append("CPUs: " + cpus + '\n');
-                builder.append("RAM USED: " + ramUsed + '\n');
-                builder.append("DISK FREE SPACE: " + diskFree + '\n');
-                mainController.getStats().setText(builder.toString());
 
             });
         }, 0, 1, TimeUnit.SECONDS);

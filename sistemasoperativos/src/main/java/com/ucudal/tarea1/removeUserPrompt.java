@@ -35,25 +35,33 @@ public class removeUserPrompt {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Searching User: " + user + '\n');
         console2.appendText("Searching User: " + user + '\n');
+        console3.appendText("Searching User: " + user + '\n');
         if (!OS.userExists(user)) {
             console1.appendText("User " + user + " does not exist" + '\n');
             console2.appendText("User " + user + " does not exist" + '\n');
+            console3.appendText("User " + user + " does not exist" + '\n');
             console1.appendText("User removal aborted" + '\n');
             console2.appendText("User removal aborted" + '\n');
+            console3.appendText("User removal aborted" + '\n');
         }
         else{
             console1.appendText("User " + user + "  exist" + '\n');
             console2.appendText("User " + user + "  exist" + '\n');
+            console3.appendText("User " + user + "  exist" + '\n');
             console1.appendText("Removing user " + user + '\n');
             console2.appendText("Removing user " + user + '\n');
+            console3.appendText("Removing user " + user + '\n');
             if (OS.removeUser(user)) {
                 console1.appendText("User " + user + " successfully removed!" + '\n');
                 console2.appendText("User " + user + " successfully removed!" + '\n');
+                console3.appendText("User " + user + " successfully removed!" + '\n');
             } else {
                 console1.appendText("Error removing " + user + " user" + '\n');
                 console2.appendText("Error removing " + user + " user" + '\n');
+                console3.appendText("Error removing " + user + " user" + '\n');
             }
             
         }

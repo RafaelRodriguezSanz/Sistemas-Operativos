@@ -35,15 +35,19 @@ public class existGroupPrompt {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Searching Group: " + group + '\n');
         console2.appendText("Searching Group: " + group + '\n');
+        console3.appendText("Searching Group: " + group + '\n');
         if (OS.groupExist(group)) {
             console1.appendText("Group " + group + " exist!" + '\n');
             console2.appendText("Group " + group + " exist!" + '\n');
+            console3.appendText("Group " + group + " exist!" + '\n');
         }
         else{
             console1.appendText("Group " + group + " does not exist" + '\n');
             console2.appendText("Group " + group + " does not exist" + '\n');
+            console3.appendText("Group " + group + " does not exist" + '\n');
         }
     }
 
