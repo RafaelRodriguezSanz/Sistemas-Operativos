@@ -15,6 +15,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 public class passwordPrompt {
@@ -55,7 +56,7 @@ public class passwordPrompt {
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
             CommandExecutor.setSudo(this.userNameID.getText(), this.password.getText());
-            //OS.addChrontab();
+            // OS.addChrontab();
         } else {
             this.message.setVisible(true);
         }
@@ -69,4 +70,10 @@ public class passwordPrompt {
         main.getWindow().hide();
     }
 
+    @FXML
+    void enter(KeyEvent event) {
+        if (event.toString() == "") {
+            Login(new ActionEvent());
+        }
+    }
 }

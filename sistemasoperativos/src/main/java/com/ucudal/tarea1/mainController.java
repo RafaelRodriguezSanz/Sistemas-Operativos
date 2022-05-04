@@ -17,10 +17,12 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class mainController {
+
     @FXML
     private ImageView Banner1;
 
@@ -318,7 +320,7 @@ public class mainController {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
-TextArea console3 = (TextArea) main.lookup("#Console3");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Groups and users where displayed successfully!" + '\n');
         console2.appendText("Groups and users where displayed successfully!" + '\n');
     }
@@ -371,7 +373,7 @@ TextArea console3 = (TextArea) main.lookup("#Console3");
         String stats = OS.getStats();
         StringSelection selection = new StringSelection(stats);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(selection, null); 
+        clipboard.setContents(selection, null);
     }
 
     @FXML
@@ -381,8 +383,9 @@ TextArea console3 = (TextArea) main.lookup("#Console3");
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
         TextArea console3 = (TextArea) main.lookup("#Console3");
-        console1.appendText("Details: "+output+'\n');
-        console2.appendText("Details: "+output+'\n');
-        console3.appendText("Details: "+output+'\n');
+        console1.appendText("Details: " + output + '\n');
+        console2.appendText("Details: " + output + '\n');
+        console3.appendText("Details: " + output + '\n');
     }
+
 }
