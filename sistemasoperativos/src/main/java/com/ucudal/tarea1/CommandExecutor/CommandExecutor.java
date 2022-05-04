@@ -58,7 +58,7 @@ public final class CommandExecutor {
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
                 setOutput(getOutput()+'\n'+line);
             }
             setErrorCode(process.waitFor());
@@ -74,7 +74,7 @@ public final class CommandExecutor {
     }
 
     public void addCommand(String command) {
-        processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"| "+command + "\" "+ CommandExecutor.username});
+        processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+"| sudo -S -u "+CommandExecutor.username+" -s "+command});
     }
 
     public void addScript(String scriptName) {
@@ -90,14 +90,14 @@ public final class CommandExecutor {
                             "ucudal"+File.separator+
                             "tarea1"+File.separator+
                             "Scripts";
-        this.addCommand("sudo -S sh "+scriptName);
+        this.addCommand("sh "+scriptName);
         this.setDirectory(new File(scriptPath));
-        
+        this.showCommands();
     }
 	
     public void addCommand(String[] commands) {
         for (String command : commands) {
-            addCommand(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+" | su -c \"echo "+CommandExecutor.password+"| "+command + "\" "+ CommandExecutor.username});
+            addCommand(command);
         }
     }
 
@@ -115,5 +115,8 @@ public final class CommandExecutor {
 
     public void printOutput(){
         System.out.println(this.output);
+    }
+    public static String getPassword() {
+        return password;
     }
 }

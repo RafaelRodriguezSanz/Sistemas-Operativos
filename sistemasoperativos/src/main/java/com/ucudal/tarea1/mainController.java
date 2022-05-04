@@ -7,8 +7,10 @@ import com.ucudal.tarea1.OS.OS;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
@@ -20,13 +22,13 @@ import javafx.stage.Stage;
 
 public class mainController {
     @FXML
-    private TabPane all;
-
-    @FXML
     private ImageView Banner1;
 
     @FXML
     private ImageView Banner2;
+
+    @FXML
+    private ImageView Banner3;
 
     @FXML
     private Button ClearConsole1;
@@ -38,10 +40,16 @@ public class mainController {
     private TextArea Console2;
 
     @FXML
+    private TextArea Console3;
+
+    @FXML
     private StackPane GroupViewer1;
 
     @FXML
     private StackPane GroupViewer2;
+
+    @FXML
+    private StackPane GroupViewer3;
 
     @FXML
     private Button addGroupButton;
@@ -50,13 +58,43 @@ public class mainController {
     private Button addUserButton;
 
     @FXML
+    private TabPane all;
+
+    @FXML
     private Button clearConsoleButton2;
+
+    @FXML
+    private Button clearConsoleButton3;
+
+    @FXML
+    private ChoiceBox<String> component;
 
     @FXML
     private Button existGroupButton;
 
     @FXML
     private Button existUserButton;
+
+    @FXML
+    private LineChart<?, ?> graph;
+
+    @FXML
+    private static  PieChart pie1 = new PieChart();
+
+    @FXML
+    private  PieChart pie2;
+
+    @FXML
+    private  PieChart pie3;
+
+    @FXML
+    private  PieChart pie4;
+
+    @FXML
+    private  PieChart pie5;
+
+    @FXML
+    private PieChart pie6;
 
     @FXML
     private Button removeGroupButton;
@@ -71,6 +109,24 @@ public class mainController {
     private Button showUserButton;
 
     // #region
+    public static PieChart getPie1() {
+        return pie1;
+    }
+    public PieChart getPie2() {
+        return this.pie2;
+    }
+    public PieChart getPie3() {
+        return this.pie3;
+    }
+    public PieChart getPie4() {
+        return this.pie4;
+    }
+    public PieChart getPie5() {
+        return this.pie5;
+    }
+    public PieChart getPie6() {
+        return this.pie6;
+    }
     public Button getAddGroupButton() {
         return addGroupButton;
     }
@@ -96,7 +152,7 @@ public class mainController {
     }
 
     public static TextArea getConsole1() {
-        return mainController.Console1;
+        return Console1;
     }
 
     public TextArea getConsole2() {

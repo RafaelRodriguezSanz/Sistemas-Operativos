@@ -1,27 +1,28 @@
 package com.ucudal.tarea1;
 
+import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import com.ucudal.tarea1.OS.OS;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
-import java.io.IOException;
-
-import com.ucudal.tarea1.OS.OS;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
+    private ScheduledExecutorService scheduledExecutorService;
     private static Scene scene;
 
     public static Scene getScene() {
@@ -55,6 +56,31 @@ public class App extends Application {
             e.printStackTrace();
         }
         prompt.show();
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // setup a scheduled executor to periodically put data into the chart
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        scheduledExecutorService.scheduleAtFixedRate(() -> {
+            //Get Data 
+            
+            String cpu = OS.getCPUPorcentage();
+            String ram = OS.getRAMUsage();
+            String disk = OS.getDiskUsage();
+            
+            String cpus = OS.getCPUS();
+            String ramUsed = OS.getUsedRAM();
+            String diskFree = OS.getDiskFreeSpace();
+
+            Platform.runLater(() -> {
+                System.out.println("CPU USAGE: "+ cpu);
+                System.out.println("RAM USAGE: "+ram);
+                System.out.println("DISK USAGE: "+disk);
+                System.out.println("CPUs: "+cpus);
+                System.out.println("RAM USED: "+ramUsed);
+                System.out.println("DISK FREE SPACE: "+diskFree);
+
+            });
+        }, 0, 1, TimeUnit.SECONDS);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -67,8 +93,12 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-
         launch();
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        scheduledExecutorService.shutdownNow();
+    }
 }

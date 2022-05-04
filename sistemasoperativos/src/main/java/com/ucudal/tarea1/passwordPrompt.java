@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -52,7 +53,7 @@ public class passwordPrompt {
             TabPane all = (TabPane) main.lookup("#all");
             all.setDisable(false);
             CommandExecutor.setSudo(this.userNameID.getText(), this.password.getText());
-            OS.addChrontab();
+            //OS.addChrontab();
         } else {
             this.message.setVisible(true);
         }
