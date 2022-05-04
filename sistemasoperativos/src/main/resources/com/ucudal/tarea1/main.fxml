@@ -83,8 +83,8 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="detailsButton" layoutX="469.0" layoutY="254.0" mnemonicParsing="false" onAction="#details" prefHeight="26.0" prefWidth="62.0" text="Details" />
-                  <Button fx:id="copyButton" layoutX="469.0" layoutY="216.0" mnemonicParsing="false" onAction="#copy" prefHeight="26.0" prefWidth="62.0" text="Copy" />
+                  <Button fx:id="detailsButton" layoutX="429.0" layoutY="254.0" mnemonicParsing="false" onAction="#details" prefHeight="26.0" prefWidth="159.0" text="Details" />
+                  <Button fx:id="copyButton" layoutX="431.0" layoutY="216.0" mnemonicParsing="false" onAction="#copy" prefHeight="26.0" prefWidth="154.0" text="Copy" />
                </children>
             </AnchorPane>
          </content>
