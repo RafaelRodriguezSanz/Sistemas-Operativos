@@ -56,28 +56,30 @@ public class App extends Application {
             e.printStackTrace();
         }
         prompt.show();
-        
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // setup a scheduled executor to periodically put data into the chart
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(() -> {
-            //Get Data 
-            
+            // Get Data
+
             String cpu = OS.getCPUPorcentage();
             String ram = OS.getRAMUsage();
             String disk = OS.getDiskUsage();
-            
+
             String cpus = OS.getCPUS();
             String ramUsed = OS.getUsedRAM();
             String diskFree = OS.getDiskFreeSpace();
 
             Platform.runLater(() -> {
-                System.out.println("CPU USAGE: "+ cpu);
-                System.out.println("RAM USAGE: "+ram);
-                System.out.println("DISK USAGE: "+disk);
-                System.out.println("CPUs: "+cpus);
-                System.out.println("RAM USED: "+ramUsed);
-                System.out.println("DISK FREE SPACE: "+diskFree);
+                StringBuilder builder = new StringBuilder();
+                builder.append("CPU USAGE: " + cpu + '\n');
+                builder.append("RAM USAGE: " + ram + '\n');
+                builder.append("DISK USAGE: " + disk + '\n');
+                builder.append("CPUs: " + cpus + '\n');
+                builder.append("RAM USED: " + ramUsed + '\n');
+                builder.append("DISK FREE SPACE: " + diskFree + '\n');
+                mainController.getStats().setText(builder.toString());
 
             });
         }, 0, 1, TimeUnit.SECONDS);

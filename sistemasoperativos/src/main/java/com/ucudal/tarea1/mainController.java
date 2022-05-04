@@ -52,6 +52,9 @@ public class mainController {
     private StackPane GroupViewer3;
 
     @FXML
+    private static TextArea stats;
+
+    @FXML
     private Button addGroupButton;
 
     @FXML
@@ -67,34 +70,16 @@ public class mainController {
     private Button clearConsoleButton3;
 
     @FXML
-    private ChoiceBox<String> component;
-
-    @FXML
     private Button existGroupButton;
 
     @FXML
     private Button existUserButton;
 
     @FXML
-    private LineChart<?, ?> graph;
+    private Button copyButton;
 
     @FXML
-    private static  PieChart pie1 = new PieChart();
-
-    @FXML
-    private  PieChart pie2;
-
-    @FXML
-    private  PieChart pie3;
-
-    @FXML
-    private  PieChart pie4;
-
-    @FXML
-    private  PieChart pie5;
-
-    @FXML
-    private PieChart pie6;
+    private Button detailsButton;
 
     @FXML
     private Button removeGroupButton;
@@ -109,24 +94,6 @@ public class mainController {
     private Button showUserButton;
 
     // #region
-    public static PieChart getPie1() {
-        return pie1;
-    }
-    public PieChart getPie2() {
-        return this.pie2;
-    }
-    public PieChart getPie3() {
-        return this.pie3;
-    }
-    public PieChart getPie4() {
-        return this.pie4;
-    }
-    public PieChart getPie5() {
-        return this.pie5;
-    }
-    public PieChart getPie6() {
-        return this.pie6;
-    }
     public Button getAddGroupButton() {
         return addGroupButton;
     }
@@ -185,6 +152,10 @@ public class mainController {
 
     public Button getShowGroupButton() {
         return showGroupButton;
+    }
+
+    public static TextArea getStats() {
+        return stats;
     }
 
     public Button getShowUserButton() {
@@ -390,4 +361,13 @@ public class mainController {
         prompt.show();
     }
 
+    @FXML
+    void copy(ActionEvent event) {
+
+    }
+
+    @FXML
+    void details(ActionEvent event) {
+
+    }
 }
