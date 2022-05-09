@@ -54,13 +54,29 @@ public class OS {
 
     // Add a new user (if does not exist), with userName and privilegies
     // Return false if it already exist or can´t be created
-    public static boolean createUser(String userName, String privilegies) {
+    public static boolean createUser(String userName, String password, boolean sudo) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand(" useradd " + userName);
+        cmd.addCommand(" useradd -m "+userName+" -p $(openssl passwd -1 -stdin <<< "+password+")"+ (sudo?"sudo":"") );
         cmd.execute();
         
         return cmd.getOutput().isEmpty();
     }
+
+    public static boolean addUserToGroup(String userName, String group) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("usermod -a -G "+group+" "+userName);
+        cmd.execute();
+        
+        return cmd.getOutput().isEmpty();
+    }
+    public static boolean removeUserFromGroup(String userName, String group) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("sudo gpasswd -d "+userName+" "+group);
+        cmd.execute();
+        return cmd.getOutput().isEmpty();
+    }
+
+    
 
     // Returns the userName user info
     // Returns null if user was not found or info could not be get
@@ -212,7 +228,7 @@ public class OS {
     public static boolean removeUser(String userName) {
         if (OS.userExists(userName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("userdel " + userName + "&& rm -r /home/" + userName);
+            cmd.addCommand("userdel --remove-home " + userName);
             cmd.execute();
             
             return cmd.getOutput().trim().isEmpty();
