@@ -7,10 +7,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class addUserPrompt {
+
+    @FXML
+    private CheckBox isSudo;
+
+    @FXML
+    private TextField Password;
 
     @FXML
     private Button cancelButton;
@@ -46,15 +53,14 @@ public class addUserPrompt {
             console1.appendText("User creation aborted." + '\n');
             console2.appendText("User creation aborted." + '\n');
             console3.appendText("User creation aborted." + '\n');
-        }
-        else{
+        } else {
             console1.appendText("User " + user + " does not exist" + '\n');
             console2.appendText("User " + user + " does not exist" + '\n');
             console3.appendText("User " + user + " does not exist" + '\n');
             console1.appendText("Creating user " + user + '\n');
             console2.appendText("Creating user " + user + '\n');
             console3.appendText("Creating user " + user + '\n');
-            if (OS.createUser(user,"")) {
+            if (OS.createUser(user, Password.getText(), isSudo.isSelected())) {
                 console1.appendText("User " + user + " successfully created!" + '\n');
                 console2.appendText("User " + user + " successfully created!" + '\n');
                 console3.appendText("User " + user + " successfully created!" + '\n');
@@ -63,7 +69,7 @@ public class addUserPrompt {
                 console2.appendText("Error creating " + user + " user" + '\n');
                 console3.appendText("Error creating " + user + " user" + '\n');
             }
-            
+
         }
     }
 
