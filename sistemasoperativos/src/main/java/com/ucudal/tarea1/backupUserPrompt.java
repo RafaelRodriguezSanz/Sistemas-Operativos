@@ -10,6 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+/**
+* Controller for backuping a User prompt
+* 
+* Please see the {@link com.ucudal.tarea1.OS.backupUser} to see the command
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class backupUserPrompt {
 
     @FXML
@@ -21,12 +29,20 @@ public class backupUserPrompt {
     @FXML
     private TextField userNameID;
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void CancelBackup(ActionEvent event) {
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void backup(ActionEvent event) {
         String user = this.userNameID.getText();

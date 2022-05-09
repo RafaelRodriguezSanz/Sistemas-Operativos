@@ -8,6 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+* GenericFileManager is a class to manage files write & read
+* 
+* Please see the {@link com.ucudal.tarea1.OS} to see the commands that use this class
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class GenericFileManager {
 
     /**
@@ -35,12 +43,24 @@ public class GenericFileManager {
         }
     }
 
+    
+    /** 
+     * @param fileFullName
+     * @param ignoreHeader
+     * @return String[]
+     */
     public static String[] readRelativeFilePath(String fileFullName, boolean ignoreHeader) {
         String path = GenericFileManager.class
                 .getResource(fileFullName).getPath();
         return readFile(path, ignoreHeader);
     }
 
+    
+    /** 
+     * @param fileFullName
+     * @param ignoreHeader
+     * @return String[]
+     */
     public static String[] readFile(String fileFullName, boolean ignoreHeader) {
         FileReader fr;
         ArrayList<String> fileLineList = new ArrayList<String>();

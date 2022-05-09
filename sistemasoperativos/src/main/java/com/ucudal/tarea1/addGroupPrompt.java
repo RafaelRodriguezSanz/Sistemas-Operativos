@@ -10,6 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+/**
+* Controller for adding group prompt
+* 
+* Please see the {@link com.ucudal.tarea1.OS.createGroup} to see the command
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class addGroupPrompt {
 
     @FXML
@@ -21,12 +29,20 @@ public class addGroupPrompt {
     @FXML
     private TextField groupNameID;
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void CancelAdd(ActionEvent event) {
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void add(ActionEvent event) {
         String group = this.groupNameID.getText();

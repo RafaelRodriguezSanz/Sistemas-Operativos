@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -18,6 +17,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
+/**
+* Controller for prompt that checks if a user exist, if it is SUDO and if the password is correct
+* 
+* Please see the {@link com.ucudal.tarea1.OS.checkSudo} to see the command
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class passwordPrompt {
     @FXML
     private Button cancelBtn;
@@ -40,6 +47,10 @@ public class passwordPrompt {
     @FXML
     private TextField userNameID;
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void Login(ActionEvent event) {
         if (OS.checkSudo(this.userNameID.getText(), this.password.getText())) {
@@ -62,6 +73,10 @@ public class passwordPrompt {
         }
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void cancelLogin(ActionEvent event) {
         Node prompt = (Node) event.getSource();
@@ -70,6 +85,10 @@ public class passwordPrompt {
         main.getWindow().hide();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void enter(KeyEvent event) {
         if (event.toString().contains("ENTER")) {

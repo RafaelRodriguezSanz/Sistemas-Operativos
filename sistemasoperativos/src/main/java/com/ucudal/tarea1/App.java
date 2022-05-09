@@ -25,10 +25,19 @@ public class App extends Application {
     private ScheduledExecutorService scheduledExecutorService;
     private static Scene scene;
 
+    
+    /** 
+     * @return Scene
+     */
     public static Scene getScene() {
         return scene;
     }
 
+    
+    /** 
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("main"));
@@ -90,19 +99,38 @@ public class App extends Application {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
+    
+    /** 
+     * @param fxml
+     * @throws IOException
+     */
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+    
+    /** 
+     * @param fxml
+     * @return Parent
+     * @throws IOException
+     */
     static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
 
+    
+    /** 
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();

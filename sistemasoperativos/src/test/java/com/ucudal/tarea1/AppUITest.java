@@ -27,6 +27,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppUITest extends ApplicationTest {
+    
+    /** 
+     * @param stage
+     */
     @Override
     public void start(Stage stage){
         Scene scene;

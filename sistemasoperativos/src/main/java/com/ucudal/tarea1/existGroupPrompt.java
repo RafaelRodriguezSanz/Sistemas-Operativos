@@ -10,6 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+/**
+* Controller for checking is a Group exist prompt
+* 
+* Please see the {@link com.ucudal.tarea1.OS.groupExist} to see the command
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class existGroupPrompt {
 
     @FXML
@@ -21,12 +29,20 @@ public class existGroupPrompt {
     @FXML
     private TextField groupNameID;
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void CancelSearch(ActionEvent event) {
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void search(ActionEvent event) {
         String group = this.groupNameID.getText();

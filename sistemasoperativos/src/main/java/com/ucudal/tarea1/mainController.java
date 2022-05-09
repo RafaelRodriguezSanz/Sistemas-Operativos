@@ -20,6 +20,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+
+/**
+* Controller for the main scene of the application
+* 
+* @author Rafael Rodriguez
+* @since 1.0
+* @version %I%, %G%
+*/
 public class mainController {
 
     @FXML
@@ -94,101 +102,197 @@ public class mainController {
     @FXML
     private Button showUserButton;
 
+    
+    /** 
+     * @return Button
+     */
     // #region
     public Button getAddGroupButton() {
         return addGroupButton;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getAddUserButton() {
         return addUserButton;
     }
 
+    
+    /** 
+     * @return ImageView
+     */
     public ImageView getBanner1() {
         return Banner1;
     }
 
+    
+    /** 
+     * @return ImageView
+     */
     public ImageView getBanner2() {
         return Banner2;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getClearConsole1() {
         return ClearConsole1;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getClearConsoleButton2() {
         return clearConsoleButton2;
     }
 
+    
+    /** 
+     * @return TextArea
+     */
     public static TextArea getConsole1() {
         return Console1;
     }
 
+    
+    /** 
+     * @return TextArea
+     */
     public TextArea getConsole2() {
         return Console2;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getExistGroupButton() {
         return existGroupButton;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getExistUserButton() {
         return existUserButton;
     }
 
+    
+    /** 
+     * @return StackPane
+     */
     public StackPane getGroupViewer2() {
         return GroupViewer2;
     }
 
+    
+    /** 
+     * @return StackPane
+     */
     public StackPane getGroupViewer1() {
         return GroupViewer1;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getRemoveGroupButton() {
         return removeGroupButton;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getRemoveUserButton() {
         return removeUserButton;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getShowGroupButton() {
         return showGroupButton;
     }
 
+    
+    /** 
+     * @return TextArea
+     */
     public static TextArea getStats() {
         return stats;
     }
 
+    
+    /** 
+     * @return Button
+     */
     public Button getShowUserButton() {
         return showUserButton;
     }
 
+    
+    /** 
+     * @param addGroupButton
+     */
     public void setAddGroupButton(Button addGroupButton) {
         this.addGroupButton = addGroupButton;
     }
 
+    
+    /** 
+     * @param addUserButton
+     */
     public void setAddUserButton(Button addUserButton) {
         this.addUserButton = addUserButton;
     }
 
+    
+    /** 
+     * @param banner
+     */
     public void setBanner(Image banner) {
         Banner1.setImage(banner);
         Banner2.setImage(banner);
     }
 
+    
+    /** 
+     * @param text
+     */
     public void setConsole(String text) {
         Console1.appendText("\n" + text);
         Console2.appendText("\n" + text);
     }
 
+    
+    /** 
+     * @param groupViewer2
+     */
     public void setGroupViewer2(StackPane groupViewer2) {
         GroupViewer2 = groupViewer2;
     }
 
+    
+    /** 
+     * @param groupViewer1
+     */
     public void setGroupViewer1(StackPane groupViewer1) {
         GroupViewer1 = groupViewer1;
     }
 
+    
+    /** 
+     * @param event
+     */
     // #endregion
 
     @FXML
@@ -205,6 +309,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void BackupUser(ActionEvent event) {
         Stage prompt = new Stage();
@@ -219,6 +327,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void ClearConsoleButton(ActionEvent event) {
         Scene main = App.getScene();
@@ -230,6 +342,10 @@ public class mainController {
         console3.setText("Console>>" + '\n');
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void ExistGroup(ActionEvent event) {
         Stage prompt = new Stage();
@@ -244,6 +360,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void ExistUser(ActionEvent event) {
         Stage prompt = new Stage();
@@ -258,6 +378,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void RemoveGroup(ActionEvent event) {
         Stage prompt = new Stage();
@@ -272,6 +396,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void RemoveUser(ActionEvent event) {
         Stage prompt = new Stage();
@@ -286,6 +414,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void ShowGroup(ActionEvent event) {
 
@@ -325,6 +457,10 @@ public class mainController {
         console3.appendText("Groups and users where displayed successfully!" + '\n');
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void ShowUsers(ActionEvent event) {
         final Image userIcon = new Image(getClass().getResourceAsStream("userIcon.png"));
@@ -354,6 +490,10 @@ public class mainController {
         console3.appendText("Users where displayed successfully!" + '\n');
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void addUser(ActionEvent event) {
         Stage prompt = new Stage();
@@ -368,6 +508,10 @@ public class mainController {
         prompt.show();
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void copy(ActionEvent event) {
         String stats = OS.getStats();
@@ -376,6 +520,10 @@ public class mainController {
         clipboard.setContents(selection, null);
     }
 
+    
+    /** 
+     * @param event
+     */
     @FXML
     void details(ActionEvent event) {
         String output = OS.getStats();
