@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <Pane maxHeight="143.0" maxWidth="332.0" minHeight="143.0" minWidth="332.0" prefHeight="143.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.addUserPrompt">
    <children>
@@ -13,6 +16,6 @@
       <Label layoutX="18.0" layoutY="14.0" text="Please, enter UserName or GID to add." />
       <Button fx:id="cancelButton" layoutX="18.0" layoutY="109.0" mnemonicParsing="false" onAction="#CancelAdd" text="Cancel" />
       <CheckBox fx:id="isSudo" layoutX="139.0" layoutY="113.0" mnemonicParsing="false" text="SUDO" />
-      <PasswordField fx:id="Password" layoutX="18.0" layoutY="77.0" prefHeight="25.0" prefWidth="297.0" promptText="Password" />
+      <PasswordField fx:id="userPassword" layoutX="18.0" layoutY="70.0" prefHeight="25.0" prefWidth="297.0" promptText="UserPassword" />
    </children>
 </Pane>

@@ -322,6 +322,7 @@ public class mainController {
         TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Groups and users where displayed successfully!" + '\n');
         console2.appendText("Groups and users where displayed successfully!" + '\n');
+        console3.appendText("Groups and users where displayed successfully!" + '\n');
     }
 
     @FXML

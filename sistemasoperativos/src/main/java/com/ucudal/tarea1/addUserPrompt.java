@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -17,9 +18,6 @@ public class addUserPrompt {
     private CheckBox isSudo;
 
     @FXML
-    private TextField Password;
-
-    @FXML
     private Button cancelButton;
 
     @FXML
@@ -27,6 +25,9 @@ public class addUserPrompt {
 
     @FXML
     private TextField userNameID;
+    
+    @FXML
+    private PasswordField userPassword;
 
     @FXML
     void CancelAdd(ActionEvent event) {
@@ -37,6 +38,8 @@ public class addUserPrompt {
     @FXML
     void add(ActionEvent event) {
         String user = this.userNameID.getText();
+        String pass = this.userPassword.getText();
+        boolean sudo = this.isSudo.isSelected();
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
         Scene main = App.getScene();
@@ -60,7 +63,7 @@ public class addUserPrompt {
             console1.appendText("Creating user " + user + '\n');
             console2.appendText("Creating user " + user + '\n');
             console3.appendText("Creating user " + user + '\n');
-            if (OS.createUser(user, Password.getText(), isSudo.isSelected())) {
+            if (OS.createUser(user, pass, sudo)) {
                 console1.appendText("User " + user + " successfully created!" + '\n');
                 console2.appendText("User " + user + " successfully created!" + '\n');
                 console3.appendText("User " + user + " successfully created!" + '\n');
