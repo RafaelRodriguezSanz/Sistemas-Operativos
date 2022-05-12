@@ -1,10 +1,10 @@
 # Índice
 
-[📕 Introduccion](Módulo%231.md "Introduccion")
+[📕 Introduccion](Introducción.md)
 
-[📕 Manual de Uso](Manual de Uso.md)
+[📕 Manual de Uso](Manual%23de%23Uso.md)
 
-[📦 Command Executor](Command Executor.md)
+[📦 Command Executor](Command%23Executor.md)
 
 [📦 GenericFileManager](GenericFileManager.md)
 
