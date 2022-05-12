@@ -2,9 +2,9 @@
 
 [📕 Introduccion](Introducción.md)
 
-[📕 Manual de Uso](Manual%23de%23Uso.md)
+[📕 Manual de Uso](Manual%20de%20Uso.md)
 
-[📦 Command Executor](Command%23Executor.md)
+[📦 Command Executor](Command%20Executor.md)
 
 [📦 GenericFileManager](GenericFileManager.md)
 
