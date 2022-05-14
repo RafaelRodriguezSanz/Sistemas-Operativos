@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <TabPane fx:id="all" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.mainController">
   <tabs>
@@ -21,11 +19,26 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addUserButton" layoutX="40.0" layoutY="27.0" mnemonicParsing="false" onAction="#addUser" text="Add" />
-                  <Button fx:id="showUserButton" layoutX="40.0" layoutY="68.0" mnemonicParsing="false" onAction="#ShowUsers" text="Show" />
-                  <Button fx:id="existUserButton" layoutX="39.0" layoutY="114.0" mnemonicParsing="false" onAction="#ExistUser" text="Exist" />
-                  <Button fx:id="removeUserButton" layoutX="39.0" layoutY="160.0" mnemonicParsing="false" onAction="#RemoveUser" text="Remove" />
-                  <Button layoutX="39.0" layoutY="209.0" mnemonicParsing="false" onAction="#BackupUser" text="Backup" />
+                  <Button fx:id="addUserButton" layoutX="40.0" layoutY="12.0" mnemonicParsing="false" onAction="#addUser" text="Add">
+                     <tooltip>
+                        <Tooltip text="Add a new user if does not exists" />
+                     </tooltip></Button>
+                  <Button fx:id="showUserButton" layoutX="40.0" layoutY="44.0" mnemonicParsing="false" onAction="#ShowUsers" text="Show">
+                     <tooltip>
+                        <Tooltip text="Update the user's panel" />
+                     </tooltip></Button>
+                  <Button fx:id="existUserButton" layoutX="39.0" layoutY="77.0" mnemonicParsing="false" onAction="#ExistUser" text="Exist">
+                     <tooltip>
+                        <Tooltip text="Checks if a user exists" />
+                     </tooltip></Button>
+                  <Button fx:id="removeUserButton" layoutX="39.0" layoutY="112.0" mnemonicParsing="false" onAction="#RemoveUser" text="Remove">
+                     <tooltip>
+                        <Tooltip text="Remove a user if exists" />
+                     </tooltip></Button>
+                  <Button layoutX="39.0" layoutY="212.0" mnemonicParsing="false" onAction="#BackupUser" text="Backup">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip></Button>
                   <StackPane fx:id="GroupViewer1" layoutX="259.0" layoutY="27.0" prefHeight="256.0" prefWidth="322.0" />
                   <Pane layoutX="-2.0" layoutY="286.0" prefHeight="86.0" prefWidth="607.0">
                      <children>
@@ -34,10 +47,28 @@
                               <Image url="@baner.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="ClearConsole1" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
+                        <Button fx:id="ClearConsole1" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear">
+                           <tooltip>
+                              <Tooltip text="Clears the console" />
+                           </tooltip></Button>
                         <TextArea fx:id="Console1" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
                      </children>
                   </Pane>
+                  <Button fx:id="addToGroupButton" layoutX="38.0" layoutY="144.0" mnemonicParsing="false" onAction="#addToGroup" text="Add To Group">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="removeFromGroupButton" layoutX="38.0" layoutY="179.0" mnemonicParsing="false" onAction="#removeFromGroup" text="Remove From Group">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="modifyButton" layoutX="39.0" layoutY="248.0" mnemonicParsing="false" onAction="#modify" text="Modify Privilegies">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>
@@ -45,10 +76,22 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addGroupButton" layoutX="40.0" layoutY="27.0" mnemonicParsing="false" onAction="#AddGroup" text="Add" />
-                  <Button fx:id="showGroupButton" layoutX="40.0" layoutY="68.0" mnemonicParsing="false" onAction="#ShowGroup" text="Show" />
-                  <Button fx:id="existGroupButton" layoutX="39.0" layoutY="114.0" mnemonicParsing="false" onAction="#ExistGroup" text="Exist" />
-                  <Button fx:id="removeGroupButton" layoutX="39.0" layoutY="160.0" mnemonicParsing="false" onAction="#RemoveGroup" text="Remove" />
+                  <Button fx:id="addGroupButton" layoutX="40.0" layoutY="27.0" mnemonicParsing="false" onAction="#AddGroup" text="Add">
+                     <tooltip>
+                        <Tooltip text="Add new group if does not exist" />
+                     </tooltip></Button>
+                  <Button fx:id="showGroupButton" layoutX="40.0" layoutY="68.0" mnemonicParsing="false" onAction="#ShowGroup" text="Show">
+                     <tooltip>
+                        <Tooltip text="Update the group panel" />
+                     </tooltip></Button>
+                  <Button fx:id="existGroupButton" layoutX="39.0" layoutY="114.0" mnemonicParsing="false" onAction="#ExistGroup" text="Exist">
+                     <tooltip>
+                        <Tooltip text="Checks if a group exist" />
+                     </tooltip></Button>
+                  <Button fx:id="removeGroupButton" layoutX="39.0" layoutY="160.0" mnemonicParsing="false" onAction="#RemoveGroup" text="Remove">
+                     <tooltip>
+                        <Tooltip text="Remove a group if exists" />
+                     </tooltip></Button>
                   <StackPane fx:id="GroupViewer2" layoutX="236.0" layoutY="18.0" prefHeight="266.0" prefWidth="341.0" />
                   <Pane layoutX="-2.0" layoutY="286.0" prefHeight="86.0" prefWidth="607.0">
                      <children>
@@ -57,7 +100,10 @@
                               <Image url="@baner.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="clearConsoleButton2" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
+                        <Button fx:id="clearConsoleButton2" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear">
+                           <tooltip>
+                              <Tooltip text="Clear the console" />
+                           </tooltip></Button>
                         <TextArea fx:id="Console2" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
                      </children>
                   </Pane>
@@ -69,38 +115,40 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <LineChart layoutX="-8.0" layoutY="20.0" prefHeight="130.0" prefWidth="257.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
-                  <StackPane fx:id="GroupViewer21" layoutX="244.0" layoutY="33.0" prefHeight="250.0" prefWidth="352.0" />
-                  <PieChart layoutX="6.0" layoutY="221.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="6.0" layoutY="153.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="77.0" layoutY="220.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="77.0" layoutY="152.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="16.0" layoutY="231.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="16.0" layoutY="163.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="87.0" layoutY="230.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="87.0" layoutY="162.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="160.0" layoutY="229.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <PieChart layoutX="160.0" layoutY="161.0" minHeight="0.0" minWidth="0.0" prefHeight="65.0" prefWidth="67.0" />
-                  <ChoiceBox layoutX="450.0" layoutY="2.0" prefWidth="150.0" />
                   <Pane layoutX="-2.0" layoutY="286.0" prefHeight="86.0" prefWidth="607.0">
                      <children>
-                        <ImageView fx:id="Banner21" fitHeight="97.0" fitWidth="607.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="Banner3" fitHeight="97.0" fitWidth="607.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@baner.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="clearConsoleButton21" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear" />
-                        <TextArea fx:id="Console21" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
+                        <Button fx:id="clearConsoleButton3" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear">
+                           <tooltip>
+                              <Tooltip text="Clear the console" />
+                           </tooltip></Button>
+                        <TextArea fx:id="Console3" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
                      </children>
                   </Pane>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="stats" editable="false" layoutX="25.0" layoutY="40.0" prefHeight="241.0" prefWidth="391.0" promptText="Stats">
+                     <tooltip>
+                        <Tooltip text="Hardware statistics" />
+                     </tooltip>
+                  </TextArea>
+                  <Label layoutX="25.0" layoutY="7.0" text="Statistics">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="detailsButton" layoutX="429.0" layoutY="254.0" mnemonicParsing="false" onAction="#details" prefHeight="26.0" prefWidth="159.0" text="Details">
+                     <tooltip>
+                        <Tooltip text="Show stats details into console" />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="copyButton" layoutX="431.0" layoutY="216.0" mnemonicParsing="false" onAction="#copy" prefHeight="26.0" prefWidth="154.0" text="Copy">
+                     <tooltip>
+                        <Tooltip text="Copy stats details into your clipboard" />
+                     </tooltip>
+                  </Button>
                </children>
             </AnchorPane>
          </content>

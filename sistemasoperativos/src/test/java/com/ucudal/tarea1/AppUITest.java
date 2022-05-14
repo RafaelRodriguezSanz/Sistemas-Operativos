@@ -27,6 +27,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppUITest extends ApplicationTest {
+    
+    /** 
+     * @param stage
+     */
     @Override
     public void start(Stage stage){
         Scene scene;
@@ -39,8 +43,11 @@ public class AppUITest extends ApplicationTest {
             stage.show();
             TextArea console1 = (TextArea) scene.lookup("#Console1");
             TextArea console2 = (TextArea) scene.lookup("#Console2");
+            TextArea console3 = (TextArea) scene.lookup("#Console3");
             console1.setText("Console>>\n");
             console2.setText("Console>>\n");
+            console3.setText("Console>>\n");
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -9,38 +9,40 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class AppTest {
-    
+
     @Before
-    public void init(){
+    public void init() {
         CommandExecutor.setSudo("rafael", "admin");
-        OS.createUser("userexists","");
-        OS.createUser("userremove","");
-        OS.createUser("someuser","");
+        OS.createUser("userexists", "pass", false);
+        OS.createUser("userremove", "pass", false);
+        OS.createUser("someuser", "pass", false);
         OS.createGroup("somegroup");
     }
 
     @Test
-    public void createUser() {   
+    public void createUser() {
         assertFalse(OS.userExists("testuser"));
-        OS.createUser("testuser","");     
+        OS.createUser("testuser", "pass", false);
         assertTrue(OS.userExists("testuser"));
         OS.removeUser("testuser");
         assertFalse(OS.userExists("testuser"));
     }
+
     @Test
-    public void userExists() {   
+    public void userExists() {
         assertTrue(OS.userExists("userexists"));
     }
+
     @Test
-    public void deleteUser() {   
+    public void deleteUser() {
         assertTrue(OS.userExists("userremove"));
         OS.removeUser("userremove");
         assertFalse(OS.userExists("userremove"));
     }
+
     @Test
-    public void allUsers() {   
+    public void allUsers() {
         String[] users = OS.getUsers();
         assertNotNull(users);
         assertNotEquals(users.length, 0);
@@ -52,8 +54,9 @@ public class AppTest {
         }
         assertTrue(flag);
     }
+
     @Test
-    public void allGroups() {   
+    public void allGroups() {
         String[] users = OS.getGroups();
         assertNotNull(users);
         assertNotEquals(users.length, 0);
@@ -67,11 +70,11 @@ public class AppTest {
     }
 
     @After
-    public void fin(){
+    public void fin() {
         OS.removeUser("userexists");
         OS.removeUser("userremove");
         OS.removeUser("someuser");
         OS.removeGroup("somegroup");
     }
-    
+
 }
