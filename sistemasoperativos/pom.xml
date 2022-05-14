@@ -4,12 +4,13 @@
     <groupId>com.ucudal</groupId>
     <artifactId>sistemasoperativos</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
         <javafx.version>17.0.1</javafx.version>
+        <aspectj.version>1.8.10</aspectj.version>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+
     </properties>
     <distributionManagement>
         <repository>
@@ -37,15 +38,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-beta-3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>2.17.3</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -57,6 +52,12 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>2.17.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -89,6 +90,11 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.14.0</reportVersion>
+                    <reportDirectory>target/surefire-reports2</reportDirectory>
+                    <allure.results.directory>target/allure-results2</allure.results.directory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
