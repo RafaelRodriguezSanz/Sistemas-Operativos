@@ -92,7 +92,6 @@ public class App extends Application {
 
             TextArea stats = (TextArea) scene.lookup("#stats");
             stats.setText(builder.toString());
-            System.out.println(builder);
             Platform.runLater(() -> {
 
             });

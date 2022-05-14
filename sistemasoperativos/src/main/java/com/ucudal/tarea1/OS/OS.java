@@ -68,7 +68,7 @@ public class OS {
     public static boolean createGroup(String groupName) {
         if (!OS.groupExist(groupName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("sudo groupadd " + groupName);
+            cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S groupadd " + groupName);
             cmd.execute();
             return cmd.getOutput().isEmpty();
         } else {
@@ -87,12 +87,18 @@ public class OS {
     // Return false if it already exist or can´t be created
     public static boolean createUser(String userName, String password, boolean sudo) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("sudo useradd -m "+userName+" -p $(openssl passwd -1 -stdin <<< "+password+")");
+        cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S "+"useradd -m "+userName+" -p $(openssl passwd -1 -stdin <<< "+password+")");
         if (sudo) {
-            cmd.addCommand("sudo usermod -a -G sudo "+userName);
+            cmd.addCommand("usermod -aG sudo "+userName);
         }
-
+        cmd.execute();
         cmd.showCommands();
+        return cmd.getOutput().isEmpty();
+    }
+
+    public static boolean modifyPrivilegie(String privilegies) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("chmod "+privilegies);
         cmd.execute();
         
         return cmd.getOutput().isEmpty();
@@ -106,7 +112,7 @@ public class OS {
      */
     public static boolean addUserToGroup(String userName, String group) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("sudo usermod -a -G "+group+" "+userName);
+        cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S usermod -a -G "+group+" "+userName);
         cmd.execute();
         
         return cmd.getOutput().isEmpty();
@@ -147,7 +153,7 @@ public class OS {
     // Returns null if users could not found
     public static String[] getUsers() {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("sudo getent passwd");
+        cmd.addCommand("getent passwd");
         cmd.execute();
         cmd.showCommands();
         return cmd.getOutput().split("\n");
@@ -161,7 +167,7 @@ public class OS {
     // Returns null if no group could not found
     public static String[] getGroups() {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("sudo getent group");
+        cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S getent group");
         cmd.execute();
         return cmd.getOutput().split("\n");
     }
@@ -175,7 +181,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd \"" + userName +"\"");
         cmd.execute();
-        cmd.showCommands();
+        
         return !cmd.getOutput().isEmpty();
     }
 
@@ -309,7 +315,7 @@ public class OS {
     // No esta hecho esto todavia, es solo el esqueleto de como podria ser
     public static boolean backupUser(String userName, boolean rewrite) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addScript("copiaSeguridad.sh", userName+" "+(rewrite ? "-r" : ""));
+        cmd.addScript("copiaSeguridad.sh", "-u "+userName+" "+(rewrite ? "-r" : ""));
         cmd.execute();
         
         return cmd.getOutput().contains("true");
@@ -361,7 +367,7 @@ public class OS {
     public static boolean removeGroup(String groupName) {
         if (OS.groupExist(groupName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("sudo groupdel " + groupName);
+            cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S groupdel " + groupName);
             cmd.execute();
             return cmd.getOutput().trim().isEmpty();
         } else {
@@ -377,7 +383,7 @@ public class OS {
     public static boolean removeUser(String userName) {
         if (OS.userExists(userName)) {
             CommandExecutor cmd = new CommandExecutor();
-            cmd.addCommand("sudo userdel --remove " + userName);
+            cmd.addCommand("echo "+CommandExecutor.getPassword()+"|sudo -S userdel --remove " + userName);
             cmd.execute();
             
             return cmd.getOutput().trim().isEmpty();
@@ -488,7 +494,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("top -n 1 -b| awk 'FNR == 3 {print $2+$4+$6+$10 > \"temp.txt\"}' && cat \"temp.txt\" && rm \"temp.txt\"");
         cmd.execute();
-        cmd.showCommands();
+        
         return cmd.getOutput().trim();
     }
     
@@ -580,7 +586,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("df -h --total | awk 'FNR==21 {print $4 > \"temp.txt\"}' && cat \"temp.txt\" && rm \"temp.txt\"");
         cmd.execute();
-        cmd.showCommands();
+        
         return cmd.getOutput().trim()+'B';
     }
     

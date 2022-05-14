@@ -132,7 +132,12 @@ public final class CommandExecutor {
      * @param command
      */
     public void addCommand(String command) {
-        processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+"| sudo -S -u "+CommandExecutor.username+" -s "+command});
+        if (processBuilder.command().size()==0) {
+            processBuilder.command(new String[] { "/bin/bash", "-c","echo "+CommandExecutor.password+"| sudo -S -u "+CommandExecutor.username+" -s "+command});
+        }
+        else{
+            processBuilder.command().add(command);
+        }
     }
 
     
@@ -157,7 +162,7 @@ public final class CommandExecutor {
                             "ucudal"+File.separator+
                             "tarea1"+File.separator+
                             "Scripts";
-        this.addCommand("sh "+scriptName);
+        this.addCommand("sh "+scriptName+ arguments);
         this.setDirectory(new File(scriptPath));
         this.showCommands();
     }
