@@ -8,9 +8,9 @@
 
 <Pane maxHeight="143.0" maxWidth="332.0" minHeight="143.0" minWidth="332.0" prefHeight="143.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.removeGroupPrompt">
    <children>
+      <Label layoutX="18.0" layoutY="14.0" text="Please, enter GroupName or GID to remove." />
       <TextField fx:id="groupNameID" layoutX="18.0" layoutY="42.0" prefHeight="25.0" prefWidth="297.0" promptText="GroupName Or GID" />
       <Button fx:id="removebutton" layoutX="263.0" layoutY="94.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Label layoutX="18.0" layoutY="14.0" text="Please, enter GroupName or GID to remove." />
       <Button fx:id="cancelButton" layoutX="18.0" layoutY="94.0" mnemonicParsing="false" onAction="#CancelRemove" text="Cancel" />
    </children>
 </Pane>

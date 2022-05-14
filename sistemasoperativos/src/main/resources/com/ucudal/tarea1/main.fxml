@@ -19,23 +19,23 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addUserButton" layoutX="40.0" layoutY="27.0" mnemonicParsing="false" onAction="#addUser" text="Add">
+                  <Button fx:id="addUserButton" layoutX="40.0" layoutY="12.0" mnemonicParsing="false" onAction="#addUser" text="Add">
                      <tooltip>
                         <Tooltip text="Add a new user if does not exists" />
                      </tooltip></Button>
-                  <Button fx:id="showUserButton" layoutX="40.0" layoutY="68.0" mnemonicParsing="false" onAction="#ShowUsers" text="Show">
+                  <Button fx:id="showUserButton" layoutX="40.0" layoutY="44.0" mnemonicParsing="false" onAction="#ShowUsers" text="Show">
                      <tooltip>
                         <Tooltip text="Update the user's panel" />
                      </tooltip></Button>
-                  <Button fx:id="existUserButton" layoutX="39.0" layoutY="114.0" mnemonicParsing="false" onAction="#ExistUser" text="Exist">
+                  <Button fx:id="existUserButton" layoutX="39.0" layoutY="77.0" mnemonicParsing="false" onAction="#ExistUser" text="Exist">
                      <tooltip>
                         <Tooltip text="Checks if a user exists" />
                      </tooltip></Button>
-                  <Button fx:id="removeUserButton" layoutX="39.0" layoutY="160.0" mnemonicParsing="false" onAction="#RemoveUser" text="Remove">
+                  <Button fx:id="removeUserButton" layoutX="39.0" layoutY="112.0" mnemonicParsing="false" onAction="#RemoveUser" text="Remove">
                      <tooltip>
                         <Tooltip text="Remove a user if exists" />
                      </tooltip></Button>
-                  <Button layoutX="39.0" layoutY="209.0" mnemonicParsing="false" onAction="#BackupUser" text="Backup">
+                  <Button layoutX="39.0" layoutY="212.0" mnemonicParsing="false" onAction="#BackupUser" text="Backup">
                      <tooltip>
                         <Tooltip text="Backup the user info if exists. It takes long." />
                      </tooltip></Button>
@@ -54,6 +54,21 @@
                         <TextArea fx:id="Console1" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
                      </children>
                   </Pane>
+                  <Button fx:id="addToGroupButton" layoutX="38.0" layoutY="144.0" mnemonicParsing="false" onAction="#addToGroup" text="Add To Group">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="removeFromGroupButton" layoutX="38.0" layoutY="179.0" mnemonicParsing="false" onAction="#removeFromGroup" text="Remove From Group">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
+                  <Button fx:id="modifyButton" layoutX="39.0" layoutY="248.0" mnemonicParsing="false" onAction="#modify" text="Modify Privilegies">
+                     <tooltip>
+                        <Tooltip text="Backup the user info if exists. It takes long." />
+                     </tooltip>
+                  </Button>
                </children></AnchorPane>
       </content>
     </Tab>
