@@ -25,3 +25,41 @@ Este script se encarga de agregar un chrontab cada un minuto para ejecutar el sc
 ### stats.sh
 
 Este script se encarga de tomar estadísticas del sistema y lo registra en un archivo llamado `stats.txt` en la carpeta `home/Estadisticas/` .
+
+El formato del `stats.txt` es algó del estilo:
+
+>
+> ####Statistics####
+> 14/05/2022 19:21:01
+>
+> =============================================CPU=======================================
+> Architecture: x86_64
+> Byte Order: LittleEndian
+> CPUs: 12
+> Threads per core: 1
+> Threads per socket: 3
+> Sockets: 4
+> Model: Intel(R)Core(TM)i7-8750HCPU@2.20GHz
+> MHz: 2208.000
+> =========================================PROCESESS=====================================
+> PID	USER	%CPU	%MEM	COMMAND
+> 385891	root	15.8	0.0	top
+> 29648	rafael	10.5	6.8	code
+> 29899	rafael	5.3	1.9	vsls-ag+
+> 1	root	0.0	0.1	systemd
+> 2	root	0.0	0.0	kthreadd
+> 3	root	0.0	0.0	rcu_gp
+> ...
+> 385892	root	0.0	0.0	awk
+> =============================================RAM=======================================
+> Free RAM: 543MB
+> Cache: 3409MB
+> Free RAM: 519MB
+> Total RAM: 7915MB
+> Available: 3720MB
+> Used RAM: 3821MB
+> Cache: 3574MB
+> RAM Usage: 2.07145%
+> ============================================DISK======================================
+> Disk Free Space: 42GB
+> Disk Usage: 42%
