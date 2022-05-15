@@ -25,10 +25,8 @@ public class OS {
      * @return boolean
      */
     public static boolean checkSudo(String user, String password) {
-        String command = "if((case \"" + user
-                + "\" in *$(grep '^sudo:.*$' /etc/group | cut -d: -f4)*) true;;*) false;;esac) && (if ( echo "
-                + password + " | su -c true " + user
-                + " ); then true; else false; fi));then echo \"true\"; else echo \"false\"; fi";
+        String command = "grep '^sudo:.*$' /etc/group | cut -d: -f4 && echo " + password + " | su -c 'echo true' "
+                + user;
         ProcessBuilder pb = new ProcessBuilder();
         pb.command(new String[] { "/bin/bash", "-c", command });
         pb.directory(new File("/"));
@@ -46,8 +44,7 @@ public class OS {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Return: " + output.trim().contains("true"));
-        return output.trim().contains("true");
+        return output.contains(user) && output.contains("true");
     }
 
     /**
@@ -91,7 +88,7 @@ public class OS {
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S " + "useradd -m " + userName
                 + " -p $(openssl passwd -1 -stdin <<< " + password + ")");
         if (sudo) {
-            cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -aG sudo " + userName);
+            cmd.addCommand("usermod -ag sudo " + userName);
         }
         cmd.execute();
 
