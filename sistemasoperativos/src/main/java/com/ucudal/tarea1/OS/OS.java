@@ -98,6 +98,10 @@ public class OS {
         return cmd.getOutput().isEmpty();
     }
 
+    /**
+     * @param privilegies
+     * @return boolean
+     */
     public static boolean modifyPrivilegie(String privilegies) {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S  chmod " + privilegies);
