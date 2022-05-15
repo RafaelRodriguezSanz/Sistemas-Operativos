@@ -94,7 +94,7 @@ public class OS {
             cmd.addCommand("usermod -aG sudo " + userName);
         }
         cmd.execute();
-        cmd.showCommands();
+
         return cmd.getOutput().isEmpty();
     }
 
@@ -118,7 +118,7 @@ public class OS {
     public static boolean addUserToGroup(String userName, String group) {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -a -G " + group + " " + userName);
-        cmd.showCommands();
+
         cmd.execute();
 
         return cmd.getOutput().isEmpty();
@@ -133,7 +133,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S  gpasswd -d " + userName + " " + group);
         cmd.execute();
-        cmd.showCommands();
+
         return cmd.getOutput().contains("Removing user " + userName + " from group " + group);
     }
 
@@ -158,7 +158,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd");
         cmd.execute();
-        cmd.showCommands();
+
         return cmd.getOutput().split("\n");
     }
 
@@ -586,6 +586,13 @@ public class OS {
         cmd.addCommand("cat /home/Estadisticas/stats.txt");
         cmd.execute();
         return cmd.getOutput();
+    }
+
+    public static boolean makeSUDO(String user) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("usermod -aG sudo " + user);
+        cmd.execute();
+        return cmd.getOutput().isEmpty();
     }
 
 }

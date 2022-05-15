@@ -47,6 +47,9 @@ public class mainController {
     private Button ClearConsole1;
 
     @FXML
+    private Button addSUDOButton;
+
+    @FXML
     private static TextArea Console1;
 
     @FXML
@@ -551,6 +554,20 @@ public class mainController {
         try {
             Scene scene = new Scene(App.loadFXML("modifyPrivilegiesPrompt"));
             prompt.setTitle("Modify Privilegies");
+            prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
+            prompt.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        prompt.show();
+    }
+
+    @FXML
+    void AddSUDO(ActionEvent event) {
+        Stage prompt = new Stage();
+        try {
+            Scene scene = new Scene(App.loadFXML("addSUDOPrompt"));
+            prompt.setTitle("Add SUDO User");
             prompt.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
             prompt.setScene(scene);
         } catch (IOException e) {
