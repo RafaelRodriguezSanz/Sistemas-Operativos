@@ -91,7 +91,7 @@ public class OS {
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S " + "useradd -m " + userName
                 + " -p $(openssl passwd -1 -stdin <<< " + password + ")");
         if (sudo) {
-            cmd.addCommand("usermod -aG sudo " + userName);
+            cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -aG sudo " + userName);
         }
         cmd.execute();
 
@@ -590,7 +590,7 @@ public class OS {
 
     public static boolean makeSUDO(String user) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("usermod -aG sudo " + user);
+        cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -aG sudo " + user);
         cmd.execute();
         return cmd.getOutput().isEmpty();
     }
