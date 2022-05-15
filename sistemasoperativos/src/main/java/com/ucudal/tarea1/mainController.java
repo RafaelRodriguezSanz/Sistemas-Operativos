@@ -508,6 +508,9 @@ public class mainController {
         console3.appendText("Details: " + output + '\n');
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void addToGroup(ActionEvent event) {
         Stage prompt = new Stage();
@@ -522,6 +525,9 @@ public class mainController {
         prompt.show();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void removeFromGroup(ActionEvent event) {
         Stage prompt = new Stage();
@@ -536,6 +542,9 @@ public class mainController {
         prompt.show();
     }
 
+    /**
+     * @param event
+     */
     @FXML
     void modify(ActionEvent event) {
         Stage prompt = new Stage();
