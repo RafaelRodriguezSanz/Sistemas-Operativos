@@ -194,17 +194,6 @@ public class OS {
      * @param userName
      * @return String
      */
-    public static String userEncriptedPassword(String userName) {
-        CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd " + userName + " |cut -d: -f2 ");
-        cmd.execute();
-        return cmd.getOutput();
-    }
-
-    /**
-     * @param userName
-     * @return String
-     */
     public static String userID(String userName) {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd " + userName + " |cut -d: -f3 ");
@@ -227,9 +216,9 @@ public class OS {
      * @param userName
      * @return int
      */
-    public static int userGroupID(String userName) {
+    public static int userGroupID(String groupName) {
         CommandExecutor cmd = new CommandExecutor();
-        cmd.addCommand("getent passwd " + userName + " |cut -d: -f4 ");
+        cmd.addCommand("getent passwd " + groupName + " |cut -d: -f4 ");
         cmd.execute();
         return Integer.parseInt(cmd.getOutput().trim());
     }
