@@ -436,7 +436,7 @@ public class OS {
     /**
      * @return String
      */
-    public static String getModel() {
+    public static String getCPUModel() {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand(
                 "lscpu |awk 'FNR==14 {print $3$4$5$6$7$8 > \"temp.txt\"}' && cat \"temp.txt\" && rm \"temp.txt\"");

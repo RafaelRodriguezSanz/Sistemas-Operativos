@@ -43,3 +43,119 @@ Este método se encarga de devolver una lista de los datos de todos los usuarios
 ###### public static boolean userExists(String userName)
 
 Este método devuelve `true` si el usuario pasado como parámetro existe y `false` en caso contrario.
+
+###### public static boolean userExists(int userID)
+
+Este método devuelve `true` si el usuario pasado como parámetro existe y `false` en caso contrario. A diferencia del método anterior, se recibe como parámetro el userID y no el nombre de usuario.
+
+###### public static String userID(String userName)
+
+Este método devuelve el userID de un usuario pasado como parámetro. En caso de que no exista se devuelve un String vacío.
+
+###### public static String groupID(String groupName)
+
+Este método devuelve el groupID de un grupo pasado como parámetro. En caso de que no exista se devuelve un String vacío.
+
+###### public static String userDescription(String userName)
+
+Este método devuelve la descripticón del usuario pasado como parámetro si existe. En caso contrario se devolverá un String vacío.
+
+###### public static boolean backupUser(String userName)
+
+Este método se encarga de realizar el backup del usuario pasado como parámetro. En caso de que el usuario no exista el proceso es abortado. Este método no sobreescribe los backups anteriores.
+
+###### public static boolean backupUser(String userName, boolean rewrite)
+
+Este método se encarga de realizar el backup del usuario pasado como parámetro. En caso de que el usuario no exista el proceso es abortado. Este método no sobreescribe los backups anteriores. Adicionalmente se le pasa como parámetro un booleano para indicar si se quiere sobreescribir el backup anterior o no.
+
+###### public static boolean cleanAllBackups()
+
+Este método se encarga de borrar todos los backups que se encuentren guardados en el sistema.
+
+###### public static boolean cleanUserBackups(String userName)
+
+Este método se encarga de borrar todos los backups de un usuario en particular que se encuentren guardados en el sistema.
+
+###### public static boolean removeGroup(String groupName)
+
+Este método se encarga de borrar un grupo si existe. Se le pasa como parámetro el nombre del grupo que se quiere borrar. En caso de que el grupo no exista, el proceso es abortado.
+
+###### public static boolean removeUser(String userName)
+
+Este método se encarga de borrar un usuario si existe. Se le pasa como parámetro el nombre del usuario que se quiere borrar. En caso de que el usuario no exista, el proceso es abortado.
+
+###### public static void addChrontab()
+
+Este método se encarga de agregar un chrontab con el script de las estadísticas. En caso de que ya exista, se sobreescribe.
+
+###### public static String getArchitectura()
+
+Este método devuelve la arquitectura del sistema.
+
+###### public static String getByteOrder()
+
+Este método devuelve el ByteOrder del sistema.
+
+###### public static String getCPUS()
+
+Este método devuelve   del sistema.
+
+###### public static String getThreadsPerCore()
+
+Este método devuelve la cantidad de threads por núcleo del sistema.
+
+###### public static String getThreadsPerSocket()
+
+Este método devuelve la cantidad de hilos por socket del sistema.
+
+###### public static String getSockets()
+
+Este método devuelve la cantidad de sockets del sistema.
+
+###### public static String getCPUModel()
+
+Este método devuelve el modelo de la CPU del sistema.
+
+###### public static String getMHz()
+
+Este método devuelve la frecuencia de la CPU del sistema.
+
+###### public static String getCPUPorcentage()
+
+Este método devuelve el porcentaje de uso de la CPU del sistema.
+
+###### public static String[] getProcesess()
+
+Este método devuelve un arreglo de los procesos ejecutandose en el sistema.
+
+###### public static String getFreeRAM()
+
+Este método devuelve el porcentaje ram libre en el sistema.
+
+###### public static String getCache()
+
+Este método devuelve la cantidad de cache utilizada.
+
+###### public static String getAvailableRAM()
+
+Este método devuelve la cantidad de memoria RAM disponible.
+
+###### public static String getRAMCache()
+
+Este método devuelve la cantidad de cache de RAM del sistema.
+
+###### public static String getRAMUsage()
+
+Este método devuelve el porcentaje de uso de la memoria RAM del sistam.
+
+###### public static String getDiskFreeSpace()
+
+Este método devuelve el espacio libre del disco.
+
+###### public static String getDiskUsage()
+
+Este método devuelve el porsentaje del disco utilizado.
+
+###### public static String getStats()
+
+Este método devuelve todas las estadísticas del sistam.
