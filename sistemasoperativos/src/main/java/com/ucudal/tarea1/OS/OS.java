@@ -88,10 +88,10 @@ public class OS {
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S " + "useradd -m " + userName
                 + " -p $(openssl passwd -1 -stdin <<< " + password + ")");
         if (sudo) {
-            cmd.addCommand("usermod -ag sudo " + userName);
+            cmd.addCommand("usermod -aG sudo " + userName);
         }
         cmd.execute();
-
+        cmd.showCommands();
         return cmd.getOutput().isEmpty();
     }
 
@@ -355,8 +355,7 @@ public class OS {
             CommandExecutor cmd = new CommandExecutor();
             cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S userdel --remove " + userName);
             cmd.execute();
-
-            return cmd.getOutput().trim().isEmpty();
+            return cmd.getOutput().trim().isEmpty() && OS.removeGroup(userName);
         } else {
             return false;
         }
