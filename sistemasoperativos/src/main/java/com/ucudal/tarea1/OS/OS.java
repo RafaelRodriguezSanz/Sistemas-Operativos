@@ -25,10 +25,8 @@ public class OS {
      * @return boolean
      */
     public static boolean checkSudo(String user, String password) {
-        String command = "if((case \"" + user
-                + "\" in *$(grep '^sudo:.*$' /etc/group | cut -d: -f4)*) true;;*) false;;esac) && (if ( echo "
-                + password + " | su -c true " + user
-                + " ); then true; else false; fi));then echo \"true\"; else echo \"false\"; fi";
+        String command = "grep '^sudo:.*$' /etc/group | cut -d: -f4 && echo " + password + " | su -c 'echo true' "
+                + user;
         ProcessBuilder pb = new ProcessBuilder();
         pb.command(new String[] { "/bin/bash", "-c", command });
         pb.directory(new File("/"));
@@ -46,8 +44,7 @@ public class OS {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Return: " + output.trim().contains("true"));
-        return output.trim().contains("true");
+        return output.contains(user) && output.contains("true");
     }
 
     /**
@@ -118,7 +115,7 @@ public class OS {
     public static boolean addUserToGroup(String userName, String group) {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -a -G " + group + " " + userName);
-        cmd.showCommands();
+
         cmd.execute();
 
         return cmd.getOutput().isEmpty();
@@ -133,7 +130,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S  gpasswd -d " + userName + " " + group);
         cmd.execute();
-        cmd.showCommands();
+
         return cmd.getOutput().contains("Removing user " + userName + " from group " + group);
     }
 
@@ -158,7 +155,7 @@ public class OS {
         CommandExecutor cmd = new CommandExecutor();
         cmd.addCommand("getent passwd");
         cmd.execute();
-        cmd.showCommands();
+
         return cmd.getOutput().split("\n");
     }
 
@@ -269,22 +266,7 @@ public class OS {
         return cmd.getOutput().trim();
     }
 
-    /**
-     * @param userName
-     * @return boolean
-     */
-    public static boolean backupUser(String userName) {
-        return backupUser(userName, false);
-    }
-
-    /**
-     * @param userName
-     * @return boolean
-     */
-    public static boolean backupUser(int userName) {
-        return backupUser(userName, false);
-    }
-
+    
     /**
      * @param userName
      * @param rewrite
@@ -358,8 +340,7 @@ public class OS {
             CommandExecutor cmd = new CommandExecutor();
             cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S userdel --remove " + userName);
             cmd.execute();
-
-            return cmd.getOutput().trim().isEmpty();
+            return cmd.getOutput().trim().isEmpty() && OS.removeGroup(userName);
         } else {
             return false;
         }
@@ -586,6 +567,13 @@ public class OS {
         cmd.addCommand("cat /home/Estadisticas/stats.txt");
         cmd.execute();
         return cmd.getOutput();
+    }
+
+    public static boolean makeSUDO(String user) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S usermod -aG sudo " + user);
+        cmd.execute();
+        return cmd.getOutput().isEmpty();
     }
 
 }

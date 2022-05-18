@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="143.0" maxWidth="332.0" minHeight="143.0" minWidth="332.0" prefHeight="143.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucudal.tarea1.overwritePrompt">
+   <children>
+      <Label layoutX="18.0" layoutY="14.0" text="Do you want to overwrite previous backups?" />
+      <Button fx:id="YesButton" layoutX="263.0" layoutY="94.0" mnemonicParsing="false" onAction="#Yes" text="Yes" />
+      <Button fx:id="NoButton" layoutX="18.0" layoutY="94.0" mnemonicParsing="false" onAction="#No" text="No" />
+   </children>
+</Pane>
