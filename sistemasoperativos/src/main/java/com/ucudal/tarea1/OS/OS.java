@@ -266,22 +266,7 @@ public class OS {
         return cmd.getOutput().trim();
     }
 
-    /**
-     * @param userName
-     * @return boolean
-     */
-    public static boolean backupUser(String userName) {
-        return backupUser(userName, false);
-    }
-
-    /**
-     * @param userName
-     * @return boolean
-     */
-    public static boolean backupUser(int userName) {
-        return backupUser(userName, false);
-    }
-
+    
     /**
      * @param userName
      * @param rewrite
