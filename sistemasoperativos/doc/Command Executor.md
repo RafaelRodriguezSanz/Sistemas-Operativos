@@ -4,7 +4,7 @@
 
 El propósito del command executor es hacer el manejo interno de los comandos de shell que se utilizarán a lo largo del proyecto. Debe manejar las credenciales del usuario que lo ejecuta, la carpeta donde ejecuta los comandos y los permisos SUDO sobre los comandos.
 
-Así mismo, es capáz de ejecutar también los scripts o una lista de comandos.
+Así mismo, es capaz de ejecutar también los scripts o una lista de comandos.
 
 ## Campos de clase
 
