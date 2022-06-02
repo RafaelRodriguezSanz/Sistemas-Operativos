@@ -266,7 +266,6 @@ public class OS {
         return cmd.getOutput().trim();
     }
 
-    
     /**
      * @param userName
      * @param rewrite
@@ -332,6 +331,17 @@ public class OS {
     }
 
     /**
+     * @param groupName
+     * @return boolean
+     */
+    public static boolean removeHome(String userName) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S rm -r /home/" + userName);
+        cmd.execute();
+        return cmd.getOutput().trim().isEmpty();
+    }
+
+    /**
      * @param userName
      * @return boolean
      */
@@ -340,7 +350,7 @@ public class OS {
             CommandExecutor cmd = new CommandExecutor();
             cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S userdel --remove " + userName);
             cmd.execute();
-            return cmd.getOutput().trim().isEmpty() && OS.removeGroup(userName);
+            return cmd.getOutput().trim().isEmpty() && OS.removeGroup(userName) && OS.removeHome(userName);
         } else {
             return false;
         }

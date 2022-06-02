@@ -26,13 +26,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class AppUITest extends ApplicationTest {
-    
-    /** 
+public class TestUISmoke extends ApplicationTest {
+
+    /**
      * @param stage
      */
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
         Scene scene;
         try {
             scene = new Scene(loadFXML("main"));
@@ -47,7 +47,7 @@ public class AppUITest extends ApplicationTest {
             console1.setText("Console>>\n");
             console2.setText("Console>>\n");
             console3.setText("Console>>\n");
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,12 +55,12 @@ public class AppUITest extends ApplicationTest {
 
     @Test
     public void smoke() {
-        //given:
+        // given:
         clickOn("#Banner1");
 
         // when:
 
-        //nothing
+        // nothing
 
         // then:
         verifyThat("#Banner1", isVisible());
