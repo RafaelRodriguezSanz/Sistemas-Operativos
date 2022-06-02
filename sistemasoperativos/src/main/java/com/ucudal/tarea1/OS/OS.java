@@ -329,6 +329,16 @@ public class OS {
             return false;
         }
     }
+/**
+     * @param groupName
+     * @return boolean
+     */
+    public static boolean removeHome(String userName) {
+        CommandExecutor cmd = new CommandExecutor();
+        cmd.addCommand("echo " + CommandExecutor.getPassword() + "|sudo -S rm -r /home/" + userName);
+        cmd.execute();
+        return cmd.getOutput().trim().isEmpty();
+    }
 
     /**
      * @param groupName
