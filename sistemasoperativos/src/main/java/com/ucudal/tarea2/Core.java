@@ -1,7 +1,9 @@
 package com.ucudal.tarea2;
 
 import com.ucudal.tarea2.utils.Job;
-import com.ucudal.tarea2.utils.Process;
+import com.ucudal.tarea2.utils.OS;
+import com.ucudal.tarea2.utils.ThreadUtils;
+import static com.ucudal.tarea2.utils.ThreadUtils.threadWarring;
 
 public class Core {
     private Job job;
@@ -10,8 +12,11 @@ public class Core {
 
     }
 
-    public Job removeCPU() throws InterruptedException {
-        job.wait();
+    public synchronized Job removeCPU() {
+        job.stop();
+        threadWarring("Blocking Task" + job.getName());
+        OS.getInstance().getScheduler().addBlocked(job);
+        this.job = null;
         return this.job;
     }
 
@@ -27,4 +32,12 @@ public class Core {
         this.job = job;
     }
 
+    public boolean isFree() {
+        Job job = this.getJob();
+        if (job != null) {
+            return !this.getJob().isAlive();
+        } else {
+            return true;
+        }
+    }
 }

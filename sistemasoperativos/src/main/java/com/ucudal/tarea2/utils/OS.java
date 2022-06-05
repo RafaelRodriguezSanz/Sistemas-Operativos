@@ -1,7 +1,8 @@
 package com.ucudal.tarea2.utils;
 
 import com.ucudal.tarea2.CPU;
-import com.ucudal.tarea2.Scheduler;
+import com.ucudal.tarea2.Core;
+import com.ucudal.tarea2.Scheduller.Scheduler;
 
 public class OS {
     private Scheduler scheduller;
@@ -9,12 +10,14 @@ public class OS {
     private static OS instance;
 
     private OS(int cores) {
-        this.scheduller = new Scheduler();
         this.cores = new CPU(cores);
+        this.scheduller = new Scheduler(this.getCoresAmmount());
     }
 
     public static OS initSystem(int cores) {
         if (instance == null) {
+            System.setOut(new ThreadUtils(System.out, true));
+            Thread.currentThread().setName("OS");
             instance = new OS(cores);
         }
         return instance;
@@ -36,4 +39,19 @@ public class OS {
         return this.scheduller;
     }
 
+    public CPU getCores() {
+        return this.cores;
+    }
+
+    public int getCoresAmmount() {
+        return this.cores.size();
+    }
+
+    public int getFreeCore() {
+        for (int i = 0; i < this.getCoresAmmount(); i++) {
+            if (this.getCores().getCore(i + 1).isFree())
+                return i;
+        }
+        return -1;
+    }
 }

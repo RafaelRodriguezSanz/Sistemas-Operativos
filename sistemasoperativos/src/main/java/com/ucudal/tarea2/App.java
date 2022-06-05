@@ -1,71 +1,79 @@
 package com.ucudal.tarea2;
 
-import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 
 import com.ucudal.tarea2.utils.Job;
 import com.ucudal.tarea2.utils.OS;
 import com.ucudal.tarea2.utils.Process;
-import com.ucudal.tarea2.utils.ThreadUtils;
 
 public class App {
     public static void main(String[] args) {
-        Thread.currentThread().setName("OS");
-        System.setOut(new ThreadUtils(System.out, true));
-        Process process1 = new Process("MyProcess1", "Me", 1, 0) {
 
+        Runnable osCore = new Runnable() {
             @Override
-            public void process() throws InterruptedException {
-                System.out.println("This is my process");
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("My Process Continues...");
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("Final Line!");
+            public void run() {
+                OS.initSystem(2);
+                while (true) {
+                    Job job = OS.getInstance().getScheduler().getJob();
+                    int freeCore = OS.getInstance().getFreeCore();
+                    if (job != null && freeCore != -1) {
+                        OS.getInstance().getCores().setCores(job, freeCore);
+                        OS.getInstance().getScheduler().setRunningJob();
+                        job.start();
+                    }
+                }
             }
 
         };
 
-        Process process2 = new Process("MyProcess2", "Me", 1, 0) {
-
+        Runnable osProcessAdder = new Runnable() {
             @Override
-            public void process() throws InterruptedException {
-                System.out.println("This is my process2");
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("My Process2 Continues...");
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("Final Line2!");
+            public void run() {
+                Process process = null;
+                int i = 0;
+                while (i != 5) {
+                    i++;
+                    process = new Process("MyProcess" + i, "Me", 1, 0) {
+                        @Override
+                        public void process() throws InterruptedException {
+                            System.out.println("This is my process" + this.priority);
+                            TimeUnit.SECONDS.sleep(5);
+                            System.out.println("My Process" + this.priority + " Continues...");
+                            TimeUnit.SECONDS.sleep(5);
+                            System.out.println("Final Line" + this.priority + "!");
+                        }
+                    };
+                    OS.getInstance().addProcess(process);
+                }
             }
-
         };
-        // OS.initSystem(2);
-        // OS.getInstance().addProcess(process1);
-        // OS.getInstance().addProcess(process2);
-        // OS.getInstance().getScheduler().start();
-        // try {
-        // TimeUnit.SECONDS.sleep(50);
-        // } catch (InterruptedException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
 
-        // Thread t1 = new Thread(process1);
-        // t1.setName(process1.getName());
-        // t1.setPriority(process1.getPriority());
-        // Thread t2 = new Thread(process2);
-        // t2.setName(process2.getName());
-        // t2.setPriority(process2.getPriority());
-        // t1.start();
-        // t2.start();
+        Runnable osBlocker = new Runnable() {
+            @Override
+            public void run() {
+                Process process = null;
+                int i = 0;
+                while (i != 5) {
+                    i++;
+                    try {
+                        TimeUnit.SECONDS.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    OS.getInstance().getCores().getCore(1).removeCPU();
+                }
+            }
+        };
 
-        Job t1 = new Job(process1);
-        Job t2 = new Job(process2);
+        Thread core = new Thread(osCore);
+        core.setName("CORE");
+        core.start();
+        Thread adder = new Thread(osProcessAdder);
+        adder.setName("ADDER");
+        adder.start();
 
-        // t1.start();
-        // t2.start();
-
-        Scheduler s = new Scheduler();
-        s.addProcess(t1);
-        s.addProcess(t2);
-        s.start();
+        Thread blocker = new Thread(osBlocker);
+        blocker.setName("BLOCKER");
+        blocker.start();
     }
 }

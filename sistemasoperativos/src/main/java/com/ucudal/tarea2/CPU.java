@@ -32,11 +32,23 @@ public class CPU {
     public void run() {
         try {
             for (Core core : cores) {
-                core.getJob().run();
+                Job next = core.getJob();
+                if (next != null && !next.isAlive()) {
+                    next.start();
+                } else {
+                    return;
+                }
             }
         } catch (Exception e) {
             ThreadUtils.threadError("Exception is caught: " + e.getMessage());
         }
     }
 
+    public void setCores(Job job, int core) {
+        this.cores[core].assignCPU(job);
+    }
+
+    public int size() {
+        return this.cores.length;
+    }
 }
