@@ -11,13 +11,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for checking is a User exist prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.userExist} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for checking is a User exist prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.userExist} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class existUserPrompt {
 
     @FXML
@@ -29,8 +30,7 @@ public class existUserPrompt {
     @FXML
     private TextField userNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -39,8 +39,7 @@ public class existUserPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -59,8 +58,7 @@ public class existUserPrompt {
             console1.appendText("User " + user + " exist!" + '\n');
             console2.appendText("User " + user + " exist!" + '\n');
             console3.appendText("User " + user + " exist!" + '\n');
-        }
-        else{
+        } else {
             console1.appendText("User " + user + " does not exist" + '\n');
             console2.appendText("User " + user + " does not exist" + '\n');
             console3.appendText("User " + user + " does not exist" + '\n');

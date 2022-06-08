@@ -1,22 +1,12 @@
 package com.ucudal.tarea2.utils;
 
 import java.time.LocalDate;
-import java.util.PrimitiveIterator;
 
 import static com.ucudal.tarea2.utils.ThreadUtils.threadTrace;
 import static com.ucudal.tarea2.utils.ThreadUtils.threadError;
 import static com.ucudal.tarea2.utils.ThreadUtils.threadWarring;;
 
 public abstract class Process implements Runnable {
-    // public static final Process Idle = new Process("Idle", "OS", 0, 1) {
-    // @Override
-    // public void process() {
-    // while (true) {
-    // threadTrace("Idleing");
-    // }
-    // }
-
-    // };
 
     public String name;
     public String owner;
@@ -81,6 +71,8 @@ public abstract class Process implements Runnable {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
+    //#endregion
 
     @Override
     public void run() {

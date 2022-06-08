@@ -11,13 +11,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for removing a User prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.removeUser} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for removing a User prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.removeUser} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class removeUserPrompt {
 
     @FXML
@@ -29,8 +30,7 @@ public class removeUserPrompt {
     @FXML
     private TextField userNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -39,8 +39,7 @@ public class removeUserPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -51,7 +50,7 @@ public class removeUserPrompt {
         Scene main = App.getScene();
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
-TextArea console3 = (TextArea) main.lookup("#Console3");
+        TextArea console3 = (TextArea) main.lookup("#Console3");
         console1.appendText("Searching User: " + user + '\n');
         console2.appendText("Searching User: " + user + '\n');
         console3.appendText("Searching User: " + user + '\n');
@@ -62,8 +61,7 @@ TextArea console3 = (TextArea) main.lookup("#Console3");
             console1.appendText("User removal aborted" + '\n');
             console2.appendText("User removal aborted" + '\n');
             console3.appendText("User removal aborted" + '\n');
-        }
-        else{
+        } else {
             console1.appendText("User " + user + "  exist" + '\n');
             console2.appendText("User " + user + "  exist" + '\n');
             console3.appendText("User " + user + "  exist" + '\n');
@@ -79,7 +77,7 @@ TextArea console3 = (TextArea) main.lookup("#Console3");
                 console2.appendText("Error removing " + user + " user" + '\n');
                 console3.appendText("Error removing " + user + " user" + '\n');
             }
-            
+
         }
     }
 

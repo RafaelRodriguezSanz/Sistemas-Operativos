@@ -1,20 +1,18 @@
-package com.ucudal.tarea2;
+package com.ucudal.tarea2.utils;
 
-import com.ucudal.tarea2.utils.Job;
-import com.ucudal.tarea2.utils.OS;
-import com.ucudal.tarea2.utils.ThreadUtils;
 import static com.ucudal.tarea2.utils.ThreadUtils.threadWarring;
+
+import com.ucudal.tarea2.System.OS;
 
 public class Core {
     private Job job;
 
     public Core() {
-
+        this.setJob(new Job(null));
     }
 
     public synchronized Job removeCPU() {
-        job.stop();
-        threadWarring("Blocking Task" + job.getName());
+        job.block();
         OS.getInstance().getScheduler().addBlocked(job);
         this.job = null;
         return this.job;

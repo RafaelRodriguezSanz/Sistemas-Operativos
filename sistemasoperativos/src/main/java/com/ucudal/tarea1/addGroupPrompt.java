@@ -11,13 +11,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for adding group prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.createGroup} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for adding group prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.createGroup} to see the
+ * command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class addGroupPrompt {
 
     @FXML
@@ -29,8 +31,7 @@ public class addGroupPrompt {
     @FXML
     private TextField groupNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -39,8 +40,7 @@ public class addGroupPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -62,8 +62,7 @@ public class addGroupPrompt {
             console1.appendText("Group creation aborted." + '\n');
             console2.appendText("Group creation aborted." + '\n');
             console3.appendText("Group creation aborted." + '\n');
-        }
-        else{
+        } else {
             console1.appendText("Group " + group + " does not exist" + '\n');
             console2.appendText("Group " + group + " does not exist" + '\n');
             console3.appendText("Group " + group + " does not exist" + '\n');
@@ -79,7 +78,7 @@ public class addGroupPrompt {
                 console2.appendText("Error creating " + group + " group" + '\n');
                 console3.appendText("Error creating " + group + " group" + '\n');
             }
-            
+
         }
     }
 

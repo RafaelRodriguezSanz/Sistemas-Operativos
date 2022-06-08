@@ -1,4 +1,4 @@
-package com.ucudal.tarea2.Scheduller;
+package com.ucudal.tarea2.System;
 
 import java.util.AbstractQueue;
 import java.util.ArrayList;
@@ -6,9 +6,10 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Set;
-import java.util.Queue;
+
 import com.ucudal.tarea2.utils.Job;
-import com.ucudal.tarea2.utils.OS;
+
+import java.util.Queue;
 
 public final class Scheduler {
 

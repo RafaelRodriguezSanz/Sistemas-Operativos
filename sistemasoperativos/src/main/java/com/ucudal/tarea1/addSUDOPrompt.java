@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for adding user prompt
  * 
- * Please see the {@link com.ucudal.tarea1.OS.createuser} to see the command
+ * Please see the {@link com.ucudal.tarea2.System.createuser} to see the command
  * 
  * @author Rafael Rodriguez
  * @since 1.0

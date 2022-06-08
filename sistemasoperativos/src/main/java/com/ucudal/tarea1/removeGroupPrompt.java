@@ -11,13 +11,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for removing a Group prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.removeGroup} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for removing a Group prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.removeGroup} to see the
+ * command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 
 public class removeGroupPrompt {
 
@@ -30,8 +32,7 @@ public class removeGroupPrompt {
     @FXML
     private TextField groupNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -40,8 +41,7 @@ public class removeGroupPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -63,8 +63,7 @@ public class removeGroupPrompt {
             console1.appendText("Group removal aborted" + '\n');
             console2.appendText("Group removal aborted" + '\n');
             console3.appendText("Group removal aborted" + '\n');
-        }
-        else{
+        } else {
             console1.appendText("Group " + group + "  exist" + '\n');
             console2.appendText("Group " + group + "  exist" + '\n');
             console3.appendText("Group " + group + "  exist" + '\n');
@@ -80,7 +79,7 @@ public class removeGroupPrompt {
                 console2.appendText("Error removing " + group + " group" + '\n');
                 console3.appendText("Error removing " + group + " group" + '\n');
             }
-            
+
         }
     }
 

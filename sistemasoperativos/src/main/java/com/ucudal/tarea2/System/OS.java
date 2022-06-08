@@ -1,8 +1,8 @@
-package com.ucudal.tarea2.utils;
+package com.ucudal.tarea2.System;
 
-import com.ucudal.tarea2.CPU;
-import com.ucudal.tarea2.Core;
-import com.ucudal.tarea2.Scheduller.Scheduler;
+import com.ucudal.tarea2.utils.Job;
+import com.ucudal.tarea2.utils.Process;
+import com.ucudal.tarea2.utils.ThreadUtils;
 
 public class OS {
     private Scheduler scheduller;
@@ -11,7 +11,7 @@ public class OS {
 
     private OS(int cores) {
         this.cores = new CPU(cores);
-        this.scheduller = new Scheduler(this.getCoresAmmount());
+        setScheduller(new Scheduler(this.getCoresAmmount()));
     }
 
     public static OS initSystem(int cores) {

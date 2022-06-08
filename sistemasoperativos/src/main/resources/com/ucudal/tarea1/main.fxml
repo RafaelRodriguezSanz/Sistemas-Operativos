@@ -158,5 +158,34 @@
             </AnchorPane>
          </content>
       </Tab>
+      <Tab closable="false" text="Scheduller">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pane layoutX="-2.0" layoutY="286.0" prefHeight="86.0" prefWidth="607.0">
+                     <children>
+                        <ImageView fx:id="Banner4" fitHeight="97.0" fitWidth="607.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@baner.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="clearConsoleButton4" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#ClearConsoleButton" text="Clear">
+                           <tooltip>
+                              <Tooltip text="Clear the console" />
+                           </tooltip>
+                        </Button>
+                        <TextArea fx:id="Console4" editable="false" layoutX="72.0" layoutY="16.0" prefHeight="63.0" prefWidth="394.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate felis nec ullamcorper venenatis. Donec a neque in dolor ultrices cursus hendrerit sed velit. Aenean sit amet mattis sem, eget vestibulum felis. Etiam iaculis dapibus mi, eleifend faucibus magna blandit at. In maximus nisl nec purus rutrum tincidunt. Nam et porta libero. Integer a neque augue. Integer condimentum mi et commodo sollicitudin. Phasellus vel vulputate orci. In rutrum urna mauris, id accumsan mi maximus in. Donec at lorem pretium, dictum dui at, semper orci. Vivamus hendrerit mauris elit, et laoreet nisl hendrerit at. Donec vel tincidunt purus. Nam ac dapibus mauris. Fusce condimentum malesuada purus eu fermentum. Aliquam molestie massa non mi interdum, eu porta nulla tincidunt.Nam egestas ullamcorper gravida. Nam tellus dui, gravida ac arcu in, semper pharetra nulla. Phasellus vel cursus urna. Morbi dapibus purus ut finibus fermentum. Sed lobortis justo sem, nec aliquam ex laoreet interdum. Donec ultricies odio eu pellentesque dapibus. Mauris auctor leo pulvinar pellentesque ornare. Curabitur ut massa scelerisque, ultricies augue facilisis, luctus purus. Maecenas ac dapibus nunc. Cras iaculis ipsum ac leo ultrices sollicitudin. Morbi nec convallis nulla. Nulla eget ligula non lectus porttitor bibendum in nec enim. Donec eu urna et nibh malesuada ultricies. Donec aliquet nisi at sem vulputate placerat." wrapText="true" />
+                     </children>
+                  </Pane>
+                  <Label layoutX="37.0" layoutY="11.0" text="CPUs">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <StackPane fx:id="GroupViewer11" layoutX="37.0" layoutY="39.0" prefHeight="238.0" prefWidth="526.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>

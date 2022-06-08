@@ -15,13 +15,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
-* Controller for backuping a User prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.backupUser} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for backuping a User prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.backupUser} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class backupUserPrompt {
 
     @FXML
@@ -32,8 +33,8 @@ public class backupUserPrompt {
 
     @FXML
     private TextField userNameID;
-    
-    /** 
+
+    /**
      * @param event
      */
     @FXML
@@ -42,8 +43,7 @@ public class backupUserPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -51,7 +51,7 @@ public class backupUserPrompt {
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
         Scene main = App.getScene();
-        overwritePrompt.setUserNameID(userNameID.getText());       
+        overwritePrompt.setUserNameID(userNameID.getText());
         Stage stage = new Stage();
         try {
             Scene scene = new Scene(App.loadFXML("overwritePrompt"));

@@ -2,8 +2,8 @@ package com.ucudal.tarea2;
 
 import java.util.concurrent.TimeUnit;
 
+import com.ucudal.tarea2.System.OS;
 import com.ucudal.tarea2.utils.Job;
-import com.ucudal.tarea2.utils.OS;
 import com.ucudal.tarea2.utils.Process;
 
 public class App {
@@ -51,7 +51,6 @@ public class App {
         Runnable osBlocker = new Runnable() {
             @Override
             public void run() {
-                Process process = null;
                 int i = 0;
                 while (i != 5) {
                     i++;
@@ -68,6 +67,7 @@ public class App {
         Thread core = new Thread(osCore);
         core.setName("CORE");
         core.start();
+
         Thread adder = new Thread(osProcessAdder);
         adder.setName("ADDER");
         adder.start();
@@ -75,5 +75,6 @@ public class App {
         Thread blocker = new Thread(osBlocker);
         blocker.setName("BLOCKER");
         blocker.start();
+
     }
 }

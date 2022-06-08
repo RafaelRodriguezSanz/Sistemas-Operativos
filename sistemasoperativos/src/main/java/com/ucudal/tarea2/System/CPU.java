@@ -1,5 +1,6 @@
-package com.ucudal.tarea2;
+package com.ucudal.tarea2.System;
 
+import com.ucudal.tarea2.utils.Core;
 import com.ucudal.tarea2.utils.Job;
 import com.ucudal.tarea2.utils.ThreadUtils;
 

@@ -13,13 +13,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for adding user prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.createUser} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for adding user prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.createUser} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class addUserPrompt {
 
     @FXML
@@ -33,12 +34,11 @@ public class addUserPrompt {
 
     @FXML
     private TextField userNameID;
-    
+
     @FXML
     private PasswordField userPassword;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -47,8 +47,7 @@ public class addUserPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
