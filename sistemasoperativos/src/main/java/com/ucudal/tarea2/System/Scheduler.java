@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Set;
 
+
 import com.ucudal.tarea2.utils.Job;
 
 import java.util.Queue;
@@ -141,4 +142,8 @@ public final class Scheduler {
         this.getBlockedReady().add(job);
     }
 
+    public void addProcessTime(int seconds, int numberJobs){ 
+        Timer timer =  new Timer(seconds * 1000, for ( int i = 0 ; i < seconds ; i++){
+        Process proces[i] = new Process("Default" + i, owner.getOwner(), 1, seconds * 2 * 1000);}))
+    }
 }

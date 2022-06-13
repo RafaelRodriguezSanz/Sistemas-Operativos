@@ -32,7 +32,7 @@ public class CPU {
 
     public void run() {
         try {
-            for (Core core : cores) {
+            for (Core core  :cores) {
                 Job next = core.getJob();
                 if (next != null && !next.isAlive()) {
                     next.start();
