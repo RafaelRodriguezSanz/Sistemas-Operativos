@@ -11,13 +11,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for checking is a Group exist prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.groupExist} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for checking is a Group exist prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.groupExist} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class existGroupPrompt {
 
     @FXML
@@ -29,8 +30,7 @@ public class existGroupPrompt {
     @FXML
     private TextField groupNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -39,8 +39,7 @@ public class existGroupPrompt {
         prompt.getScene().getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -59,8 +58,7 @@ public class existGroupPrompt {
             console1.appendText("Group " + group + " exist!" + '\n');
             console2.appendText("Group " + group + " exist!" + '\n');
             console3.appendText("Group " + group + " exist!" + '\n');
-        }
-        else{
+        } else {
             console1.appendText("Group " + group + " does not exist" + '\n');
             console2.appendText("Group " + group + " does not exist" + '\n');
             console3.appendText("Group " + group + " does not exist" + '\n');

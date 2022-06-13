@@ -35,6 +35,15 @@ public class mainController {
     private Button addToGroupButton;
 
     @FXML
+    private ImageView Banner4;
+
+    @FXML
+    private TextArea Console4;
+
+    @FXML
+    private Button clearConsoleButton4;
+
+    @FXML
     private ImageView Banner1;
 
     @FXML

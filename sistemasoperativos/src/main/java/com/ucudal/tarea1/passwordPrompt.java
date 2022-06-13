@@ -18,13 +18,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 /**
-* Controller for prompt that checks if a user exist, if it is SUDO and if the password is correct
-* 
-* Please see the {@link com.ucudal.tarea1.OS.checkSudo} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for prompt that checks if a user exist, if it is SUDO and if the
+ * password is correct
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.checkSudo} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class passwordPrompt {
     @FXML
     private Button cancelBtn;
@@ -47,8 +49,7 @@ public class passwordPrompt {
     @FXML
     private TextField userNameID;
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -73,8 +74,7 @@ public class passwordPrompt {
         }
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -85,8 +85,7 @@ public class passwordPrompt {
         main.getWindow().hide();
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -96,7 +95,7 @@ public class passwordPrompt {
                 Node prompt = (Node) event.getSource();
                 prompt.getScene().getWindow().hide();
                 Scene main = App.getScene();
-    
+
                 TextArea console1 = (TextArea) main.lookup("#Console1");
                 TextArea console2 = (TextArea) main.lookup("#Console2");
                 TextArea console3 = (TextArea) main.lookup("#Console3");

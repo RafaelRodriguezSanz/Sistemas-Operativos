@@ -11,13 +11,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 /**
-* Controller for backuping a User prompt
-* 
-* Please see the {@link com.ucudal.tarea1.OS.backupUser} to see the command
-* @author Rafael Rodriguez
-* @since 1.0
-* @version %I%, %G%
-*/
+ * Controller for backuping a User prompt
+ * 
+ * Please see the {@link com.ucudal.tarea2.System.backupUser} to see the command
+ * 
+ * @author Rafael Rodriguez
+ * @since 1.0
+ * @version %I%, %G%
+ */
 public class overwritePrompt {
 
     @FXML
@@ -28,12 +29,11 @@ public class overwritePrompt {
 
     static private String userNameID;
 
-
     public static void setUserNameID(String userNameID) {
         overwritePrompt.userNameID = userNameID;
     }
 
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -55,15 +55,14 @@ public class overwritePrompt {
             console1.appendText("User backup aborted." + '\n');
             console2.appendText("User backup aborted." + '\n');
             console3.appendText("User backup aborted." + '\n');
-        }
-        else{
+        } else {
             console1.appendText("User " + user + " allready exist!" + '\n');
             console2.appendText("User " + user + " allready exist!" + '\n');
             console3.appendText("User " + user + " allready exist!" + '\n');
             console1.appendText("Creating backup for user " + user + '\n');
             console2.appendText("Creating backup for user " + user + '\n');
             console3.appendText("Creating backup for user " + user + '\n');
-            if (OS.backupUser(user,true)) {
+            if (OS.backupUser(user, true)) {
                 console1.appendText("User " + user + " backup was successfully created!" + '\n');
                 console2.appendText("User " + user + " backup was successfully created!" + '\n');
                 console3.appendText("User " + user + " backup was successfully created!" + '\n');
@@ -72,12 +71,11 @@ public class overwritePrompt {
                 console2.appendText("Error creating backup for " + user + " user" + '\n');
                 console3.appendText("Error creating backup for " + user + " user" + '\n');
             }
-            
-        }        
+
+        }
     }
 
-    
-    /** 
+    /**
      * @param event
      */
     @FXML
@@ -99,15 +97,14 @@ public class overwritePrompt {
             console1.appendText("User backup aborted." + '\n');
             console2.appendText("User backup aborted." + '\n');
             console3.appendText("User backup aborted." + '\n');
-        }
-        else{
+        } else {
             console1.appendText("User " + user + " allready exist!" + '\n');
             console2.appendText("User " + user + " allready exist!" + '\n');
             console3.appendText("User " + user + " allready exist!" + '\n');
             console1.appendText("Creating backup for user " + user + '\n');
             console2.appendText("Creating backup for user " + user + '\n');
             console3.appendText("Creating backup for user " + user + '\n');
-            if (OS.backupUser(user,false)) {
+            if (OS.backupUser(user, false)) {
                 console1.appendText("User " + user + " backup was successfully created!" + '\n');
                 console2.appendText("User " + user + " backup was successfully created!" + '\n');
                 console3.appendText("User " + user + " backup was successfully created!" + '\n');
@@ -116,7 +113,7 @@ public class overwritePrompt {
                 console2.appendText("Error creating backup for " + user + " user" + '\n');
                 console3.appendText("Error creating backup for " + user + " user" + '\n');
             }
-            
+
         }
     }
 

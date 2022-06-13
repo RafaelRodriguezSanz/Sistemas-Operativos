@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for adding user prompt
  * 
- * Please see the {@link com.ucudal.tarea1.OS.createUser} to see the command
+ * Please see the {@link com.ucudal.tarea2.System.createUser} to see the command
  * 
  * @author Rafael Rodriguez
  * @since 1.0
