@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+//Tomado de: https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
+
 public class ThreadUtils extends PrintStream {
 
     public ThreadUtils(OutputStream out, boolean autoFlush) {
