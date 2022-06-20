@@ -192,6 +192,7 @@ public class App {
                 System.out.println("Use unsuspend to unsuspend processes");
                 System.out.println("Use unblock to unblock processes");
                 System.out.println("Use kill to kill processes");
+                System.out.println("Use priority to change the  priority of a processes");
                 System.out.println("Use show to see all process states");
                 System.out.println("Use show-nexts to see blocked processes");
                 while (true) {
@@ -376,17 +377,16 @@ public class App {
                             }
                             break;
                         case "priority":
+                            System.out.println("Give me index of ready process to change it priority");
                             try {
                                 while (!userInput.hasNext())
                                     ;
-                                for (Job changable : executing) {
-                                    if (changable.getName().equals(userInput.nextLine())) {
-                                        while (!userInput.hasNext())
-                                            ;
-                                        Integer x = Integer.parseInt(userInput.nextLine());
-                                        changable.setPriority(x);
-                                    }
-                                }
+                                int i = Integer.parseInt(userInput.nextLine());
+                                System.out.println("Give me the new priority");
+                                while (!userInput.hasNext())
+                                    ;
+                                int priority = Integer.parseInt(userInput.nextLine());
+                                ((Job[]) ready.toArray())[i].setPriority(priority);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
