@@ -54,6 +54,52 @@ public class App {
         }
     }
 
+    public static abstract class Blocker implements Runnable {
+        Job job;
+        Unblocker unblocker;
+
+        public Blocker(Job job) {
+            this.job = job;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(this.job.interruptionTime);
+                    block();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        abstract void block();
+    }
+
+    public static abstract class Unblocker implements Runnable {
+        Job job;
+        Blocker blocker;
+
+        public Unblocker(Job job) {
+            this.job = job;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(this.job.interruptionTime);
+                    unblock();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        abstract void unblock();
+    }
+
     public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
         System.setOut(new ThreadUtils(System.out, true));
@@ -140,70 +186,21 @@ public class App {
                 deployer.setName("Deployer");
                 deployer.start();
 
-                // Runnable timeout = new Runnable() {
-                // @Override
-                // public void run() {
-                // while (true) {
-                // for (int i = 0; i < executing.length; i++) {
-                // if (executing[i] != null) {
-                // try {
-                // Thread.sleep(executing[i].lookInteruption);
-                // } catch (InterruptedException e) {
-                // e.printStackTrace();
-                // }
-                // synchronized (executing[i]) {
-                // Job stoped = executing[i];
-                // stoped.blockedBy = "I/O";
-                // stoped.blockedTime = System.currentTimeMillis();
-                // synchronized (executing) {
-                // executing[i] = null;
-                // try {
-                // stoped.wait();
-                // } catch (InterruptedException e) {
-                // e.printStackTrace();
-                // }
-                // blocked.add(stoped);
-                // }
-                // }
-                // }
-                // }
-
-                // }
-                // }
-                // };
-                // Thread removeCPU = new Thread(timeout);
-                // removeCPU.start();
-
-                // Runnable interruption = new Runnable() {
-                // @Override
-                // public void run() {
-                // while (true) {
-                // synchronized (blocked) {
-                // Job retener = null;
-                // for (Job job : blocked) {
-                // if (job.blockedBy.equals("I/O")
-                // && job.blockedTime + job.timeout < System.currentTimeMillis()) {
-                // retener = job;
-                // ready.add(job);
-                // break;
-                // }
-                // }
-                // if (retener != null) {
-                // blocked.remove(retener);
-                // }
-                // }
-                // }
-                // }
-                // };
-                // Thread interruptionSequence = new Thread(interruption);
-                // interruptionSequence.start();
-
+                System.out.println("Use add to add processes");
+                System.out.println("Use block to block processes");
+                System.out.println("Use suspend to suspend processes");
+                System.out.println("Use unsuspend to unsuspend processes");
+                System.out.println("Use unblock to unblock processes");
+                System.out.println("Use kill to kill processes");
+                System.out.println("Use show to see all process states");
+                System.out.println("Use show-nexts to see blocked processes");
                 while (true) {
-
                     while (!userInput.hasNext())
                         ;
+
                     switch (userInput.nextLine()) {
                         case "add":
+                            System.out.println("Give me CSV Values");
                             while (!userInput.hasNext())
                                 ;
                             String[] input = userInput.nextLine().split(",");
@@ -217,6 +214,67 @@ public class App {
                                 long interruptionTime = Long.parseLong(input[a + 4]);
                                 long lookInteruption = Long.parseLong(input[a + 5]);
                                 Job thread = new Job(new Tarea(executionTime), interruptionTime, lookInteruption);
+                                Blocker blocker = new App.Blocker(thread) {
+                                    @Override
+                                    void block() {
+                                        while (thread.getState() != Thread.State.TERMINATED) {
+                                            try {
+                                                Thread.currentThread().sleep(thread.interruptionTime);
+                                            } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
+                                            for (int j = 0; j < executing.length; j++) {
+                                                if (executing[j] != null && executing[j].equals(thread)) {
+                                                    synchronized (thread) {
+                                                        thread.suspend();
+                                                        thread.blockedBy = "OS";
+                                                    }
+                                                    synchronized (blocked) {
+                                                        if (!blocked.contains(thread)) {
+                                                            blocked.add(thread);
+                                                        }
+                                                    }
+                                                    executing[j] = null;
+                                                    break;
+                                                }
+                                            }
+                                            Thread unblockTask = new Thread(unblocker);
+                                            unblockTask.run();
+                                        }
+                                        Thread.currentThread().stop();
+                                    }
+                                };
+                                Unblocker unblocker = new App.Unblocker(thread) {
+                                    @Override
+                                    void unblock() {
+                                        while (thread.getState() != Thread.State.TERMINATED) {
+                                            try {
+                                                Thread.currentThread().sleep(thread.lookInteruption);
+                                            } catch (InterruptedException e) {
+                                                e.printStackTrace();
+                                            }
+                                            for (int j = 0; j < blocked.size(); j++) {
+                                                synchronized (blocked) {
+                                                    if (blocked.get(j).blockedBy.equals("OS")) {
+                                                        ready.add(thread);
+                                                        blocked.remove(thread);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            Thread blockTask = new Thread(blocker);
+                                            blockTask.run();
+                                        }
+                                        Thread.currentThread().stop();
+                                    }
+                                };
+                                blocker.unblocker = unblocker;
+                                unblocker.blocker = blocker;
+
+                                Thread blockerSequence = new Thread(blocker);
+                                blockerSequence.setName("Blocker");
+                                blockerSequence.start();
+
                                 if (owner == "OS") {
                                     OSThreads.add(thread);
                                 } else {
@@ -228,6 +286,7 @@ public class App {
                             }
                             break;
                         case "suspend":
+                            System.out.println("Give me index of executing process to suspend");
                             while (!userInput.hasNext())
                                 ;
                             Integer g = Integer.parseInt(userInput.nextLine());
@@ -240,6 +299,7 @@ public class App {
                             executing[g] = null;
                             break;
                         case "unsuspend":
+                            System.out.println("Give me index of suspended process to unsuspend");
                             try {
                                 while (!userInput.hasNext())
                                     ;
@@ -261,6 +321,7 @@ public class App {
                             }
                             break;
                         case "block":
+                            System.out.println("Give me index of running process to block");
                             try {
                                 while (!userInput.hasNext())
                                     ;
@@ -278,6 +339,7 @@ public class App {
                             }
                             break;
                         case "kill":
+                            System.out.println("Give me index of running process to kill");
                             try {
                                 while (!userInput.hasNext())
                                     ;
@@ -291,7 +353,8 @@ public class App {
                                 e.printStackTrace();
                             }
                             break;
-                        case "resume":
+                        case "unblock":
+                            System.out.println("Give me index of blocked process to unblock");
                             try {
                                 while (!userInput.hasNext())
                                     ;
@@ -300,7 +363,7 @@ public class App {
                                     blocked.get(m).resume();
                                 }
                                 for (int j = 0; j < executing.length; j++) {
-                                    if (executing[j] == null) {
+                                    if (executing[j] == null && executing[j].blockedBy.equals("User")) {
                                         synchronized (blocked) {
                                             executing[j] = blocked.get(m);
                                             blocked.remove(j);
@@ -308,17 +371,6 @@ public class App {
                                         break;
                                     }
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                        case "time":
-                            try {
-                                while (!userInput.hasNext())
-                                    ;
-                                Integer m = Integer.parseInt(userInput.nextLine());
-                                time = (long) m;
-                                System.out.println("Process time in CPU modified to " + m + "ms");
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -342,14 +394,14 @@ public class App {
                         case "show":
                             try {
                                 String representation = "";
-                                representation += "-Executing-\n";
+                                representation += "\n\n-Executing-\n";
                                 boolean isEmpty = true;
                                 for (int n = 0; n < executing.length; n++) {
                                     if (executing[n] != null) {
                                         isEmpty = false;
                                     }
                                 }
-                                if (isEmpty) {
+                                if (executing.equals(null) || executing.length == 0 || isEmpty) {
                                     representation += "\t*No Process*\n";
                                 } else {
                                     for (int v = 0; v < executing.length; v++) {
@@ -359,7 +411,7 @@ public class App {
                                     }
                                 }
                                 representation += "-Blocked-\n";
-                                if (blocked.isEmpty()) {
+                                if (blocked.equals(null) || blocked.isEmpty()) {
                                     representation += "\t*No Process*\n";
                                 } else {
                                     for (Job blockedThread : blocked) {
@@ -367,7 +419,7 @@ public class App {
                                     }
                                 }
                                 representation += "-Suspended-\n";
-                                if (suspended.isEmpty()) {
+                                if (suspended.equals(null) || suspended.isEmpty()) {
                                     representation += "\t*No Process*\n";
                                 } else {
                                     for (Job suspendedThread : suspended) {
@@ -375,7 +427,7 @@ public class App {
                                     }
                                 }
                                 representation += "-Finished-\n";
-                                if (finished.isEmpty()) {
+                                if (finished.equals(null) || finished.isEmpty()) {
                                     representation += "\t*No Process*\n";
                                 } else {
                                     for (Job finishedThread : finished) {
@@ -383,11 +435,12 @@ public class App {
                                     }
                                 }
                                 representation += "-Ready-\n";
-                                if (ready.isEmpty()) {
+                                if (ready.equals(null) || ready.isEmpty()) {
                                     representation += "\t*No Process*\n";
                                 } else {
-                                    for (Job readyThread : ready) {
-                                        representation += "\t-" + readyThread.getPriority() + readyThread.getName()
+                                    for (int i = 0; i < ready.size(); i++) {
+                                        representation += "\t-#" + i + ((Job) ready.toArray()[i]).getPriority()
+                                                + ((Job) ready.toArray()[i]).getName()
                                                 + '\n';
                                     }
                                 }
@@ -399,7 +452,7 @@ public class App {
                         case "show-nexts":
                             try {
                                 String representation = "";
-                                representation += "-Nexts-\n";
+                                representation += "\n\n-Nexts-\n";
                                 if (blocked.isEmpty()) {
                                     representation += "\t*No Process*\n";
                                 } else {
