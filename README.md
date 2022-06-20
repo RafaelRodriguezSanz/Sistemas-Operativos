@@ -18,5 +18,3 @@ Proyecto final de Sistemas Operativos para la Universidad Católica del Uruguay,
 [📕 Documentación](sistemasoperativos/doc/índice.md "Documentación")
 
 [🎞 Primera Presentación](https://www.canva.com/design/DAFAzQWOxyg/eSwMTCI-HsCllrRnagL9mA/edit?utm_content=DAFAzQWOxyg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-
-[❔ Preguntas](https://padlet.com/rafaelrodriguezsanz/SO)
