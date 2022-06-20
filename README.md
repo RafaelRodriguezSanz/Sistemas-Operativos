@@ -19,7 +19,7 @@ Proyecto final de Sistemas Operativos para la Universidad Católica del Uruguay,
 
 [📕 Documentación Tarea 1](sistemasoperativos/doc/índice.md "Documentación")
 
-[📕 Documentación Tarea 2](sistemasoperativos/doc/Manual-de-Uso-(Tarea 2).md "Documentación")
+[📕 Documentación Tarea 2](sistemasoperativos/doc/Manual2.md "Documentación")
 
 [🎞 Primera Presentación Tarea 1](https://www.canva.com/design/DAFAzQWOxyg/eSwMTCI-HsCllrRnagL9mA/edit?utm_content=DAFAzQWOxyg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
