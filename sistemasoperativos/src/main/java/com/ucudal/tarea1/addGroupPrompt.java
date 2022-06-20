@@ -49,34 +49,17 @@ public class addGroupPrompt {
         Node prompt = (Node) event.getSource();
         prompt.getScene().getWindow().hide();
         Scene main = App.getScene();
-        TextArea console1 = (TextArea) main.lookup("#Console1");
-        TextArea console2 = (TextArea) main.lookup("#Console2");
-        TextArea console3 = (TextArea) main.lookup("#Console3");
-        console1.appendText("Searching Group: " + group + '\n');
-        console2.appendText("Searching Group: " + group + '\n');
-        console3.appendText("Searching Group: " + group + '\n');
+        App.printConsole("Searching Group: " + group + '\n');
         if (OS.groupExist(group)) {
-            console1.appendText("Group " + group + " allready exist!" + '\n');
-            console2.appendText("Group " + group + " allready exist!" + '\n');
-            console3.appendText("Group " + group + " allready exist!" + '\n');
-            console1.appendText("Group creation aborted." + '\n');
-            console2.appendText("Group creation aborted." + '\n');
-            console3.appendText("Group creation aborted." + '\n');
+            App.printConsole("Group " + group + " allready exist!" + '\n');
+            App.printConsole("Group creation aborted." + '\n');
         } else {
-            console1.appendText("Group " + group + " does not exist" + '\n');
-            console2.appendText("Group " + group + " does not exist" + '\n');
-            console3.appendText("Group " + group + " does not exist" + '\n');
-            console1.appendText("Creating group " + group + '\n');
-            console2.appendText("Creating group " + group + '\n');
-            console3.appendText("Creating group " + group + '\n');
+            App.printConsole("Group " + group + " does not exist" + '\n');
+            App.printConsole("Creating group " + group + '\n');
             if (OS.createGroup(group)) {
-                console1.appendText("Group " + group + " successfully created!" + '\n');
-                console2.appendText("Group " + group + " successfully created!" + '\n');
-                console3.appendText("Group " + group + " successfully created!" + '\n');
+                App.printConsole("Group " + group + " successfully created!" + '\n');
             } else {
-                console1.appendText("Error creating " + group + " group" + '\n');
-                console2.appendText("Error creating " + group + " group" + '\n');
-                console3.appendText("Error creating " + group + " group" + '\n');
+                App.printConsole("Error creating " + group + " group" + '\n');
             }
 
         }

@@ -51,28 +51,16 @@ public class addSUDOPrompt {
         TextArea console1 = (TextArea) main.lookup("#Console1");
         TextArea console2 = (TextArea) main.lookup("#Console2");
         TextArea console3 = (TextArea) main.lookup("#Console3");
-        console1.appendText("Searching user: " + user + '\n');
-        console2.appendText("Searching user: " + user + '\n');
-        console3.appendText("Searching user: " + user + '\n');
+        App.printConsole("Searching user: " + user + '\n');
         if (!OS.userExists(user)) {
-            console1.appendText("User " + user + " does not exist!" + '\n');
-            console2.appendText("User " + user + " does not exist!" + '\n');
-            console3.appendText("User " + user + " does not exist!" + '\n');
-            console1.appendText("User SUDO addition aborted." + '\n');
-            console2.appendText("User SUDO addition aborted." + '\n');
-            console3.appendText("User SUDO addition aborted." + '\n');
+            App.printConsole("User " + user + " does not exist!" + '\n');
+            App.printConsole("User SUDO addition aborted." + '\n');
         } else {
-            console1.appendText("User " + user + " allready exist." + '\n');
-            console2.appendText("User " + user + " allready exist." + '\n');
-            console3.appendText("User " + user + " allready exist." + '\n');
+            App.printConsole("User " + user + " already exist." + '\n');
             if (OS.makeSUDO(user)) {
-                console1.appendText("User " + user + " is now a SUDO user." + '\n');
-                console2.appendText("User " + user + " is now a SUDO user." + '\n');
-                console3.appendText("User " + user + " is now a SUDO user." + '\n');
+                App.printConsole("User " + user + " is now a SUDO user." + '\n');
             } else {
-                console1.appendText("Error makin " + user + " a SUDO user" + '\n');
-                console2.appendText("Error makin " + user + " a SUDO user" + '\n');
-                console3.appendText("Error makin " + user + " a SUDO user" + '\n');
+                App.printConsole("Error making " + user + " a SUDO user" + '\n');
             }
         }
     }
