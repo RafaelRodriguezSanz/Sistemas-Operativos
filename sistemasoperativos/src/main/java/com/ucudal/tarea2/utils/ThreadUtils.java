@@ -102,12 +102,21 @@ public class ThreadUtils extends PrintStream {
 
     @Override
     public void print(String s) {
-        s = CYAN_BOLD_BRIGHT
-                + Thread.currentThread().getName() + " - #"
-                + Thread.currentThread().getId()
-                + "> "
-                + s
-                + RESET;
+        if (Thread.currentThread().getName() == "OS") {
+            s = GREEN_BOLD_BRIGHT
+                    + Thread.currentThread().getName() + " - #"
+                    + Thread.currentThread().getId()
+                    + "> "
+                    + s
+                    + RESET;
+        } else {
+            s = CYAN_BOLD_BRIGHT
+                    + Thread.currentThread().getName() + " - #"
+                    + Thread.currentThread().getId()
+                    + "> "
+                    + s
+                    + RESET;
+        }
         super.print(s);
     }
 }

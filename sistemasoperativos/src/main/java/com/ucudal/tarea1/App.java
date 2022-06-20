@@ -25,16 +25,19 @@ public class App extends Application {
     private ScheduledExecutorService scheduledExecutorService;
     private static Scene scene;
 
-    
-    /** 
+    private static TextArea console1;
+    private static TextArea console2;
+    private static TextArea console3;
+    private static TextArea console4;
+
+    /**
      * @return Scene
      */
     public static Scene getScene() {
         return scene;
     }
 
-    
-    /** 
+    /**
      * @param stage
      * @throws IOException
      */
@@ -47,12 +50,11 @@ public class App extends Application {
         stage.setTitle("OS Manager");
         stage.getIcons().add(new Image("file:./src/main/resources/com/ucudal/tarea1/icon.png"));
         stage.show();
-        TextArea console1 = (TextArea) scene.lookup("#Console1");
-        TextArea console2 = (TextArea) scene.lookup("#Console2");
-        TextArea console3 = (TextArea) scene.lookup("#Console3");
-        console1.setText("Console>>\n");
-        console2.setText("Console>>\n");
-        console3.setText("Console>>\n");
+        console1 = (TextArea) scene.lookup("#Console1");
+        console2 = (TextArea) scene.lookup("#Console2");
+        console3 = (TextArea) scene.lookup("#Console3");
+        console4 = (TextArea) scene.lookup("#Console4");
+        App.setConsole("Console>>\n");
         TabPane all = (TabPane) scene.lookup("#all");
         all.setDisable(true);
         Stage prompt = new Stage();
@@ -81,7 +83,7 @@ public class App extends Application {
             String cpus = OS.getCPUS();
             String ramUsed = OS.getUsedRAM();
             String diskFree = OS.getDiskFreeSpace();
-            
+
             StringBuilder builder = new StringBuilder();
             builder.append("CPU USAGE: " + cpu + "%\n");
             builder.append("RAM USAGE: " + ram + "%\n");
@@ -98,8 +100,7 @@ public class App extends Application {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
-    
-    /** 
+    /**
      * @param fxml
      * @throws IOException
      */
@@ -107,8 +108,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    
-    /** 
+    /**
      * @param fxml
      * @return Parent
      * @throws IOException
@@ -118,21 +118,33 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    
-    /** 
+    /**
      * @param args
      */
     public static void main(String[] args) {
         launch();
     }
 
-    
-    /** 
+    /**
      * @throws Exception
      */
     @Override
     public void stop() throws Exception {
         super.stop();
         scheduledExecutorService.shutdownNow();
+    }
+
+    public static void printConsole(String str) {
+        console1.appendText(str);
+        console2.appendText(str);
+        console3.appendText(str);
+        console4.appendText(str);
+    }
+
+    public static void setConsole(String str) {
+        console1.setText(str);
+        console2.setText(str);
+        console3.setText(str);
+        console4.setText(str);
     }
 }
